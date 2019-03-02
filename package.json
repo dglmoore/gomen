@@ -31,5 +31,8 @@
     "eslint": "^5.15.0",
     "eslint-plugin-jest": "^22.3.0",
     "jest": "^24.1.0"
+  },
+  "dependencies": {
+    "jsnetworkx": "^0.3.4"
   }
 }
