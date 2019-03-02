@@ -47,10 +47,26 @@ test.each`
     ${0.0}       | ${0.0}
     ${0.5}       | ${1.0}
     ${0.5}       | ${0.5}
-`('Prisoner\'s Dilemma throws for invalid parameters', function({P, R}) {
+`('PrisonersDilemma throws for invalid parameters', function({ P, R }) {
     expect(() => TwoPlayerGame.PrisonersDilemma(P, R)).toThrow(RangeError);
 });
 
 test.each([[0.5,0.75], [0.25, 0.50]])('PrisonersDilemma(%i, %i)', function(P, R) {
-    expect(TwoPlayerGame.PrisonersDilemma(P,R).payoff).toEqual([[R, 0.0], [1.0, P]]);
+    expect(TwoPlayerGame.PrisonersDilemma(P, R).payoff).toEqual([[R, 0.0], [1.0, P]]);
+});
+
+test.each`
+    T            | P
+    ${undefined} | ${undefined}
+    ${0.5}       | ${undefined}
+    ${undefined} | ${0.5}
+    ${0.0}       | ${0.0}
+    ${0.5}       | ${1.0}
+    ${0.5}       | ${0.5}
+`('HawkDove throws for invalid parameters', function({ T, P }) {
+    expect(() => TwoPlayerGame.HawkDove(T, P)).toThrow(RangeError);
+});
+
+test.each([[0.5,0.75], [0.25, 0.50]])('HawkDove(%i, %i)', function(T, P) {
+    expect(TwoPlayerGame.HawkDove(T, P).payoff).toEqual([[0.0, 1.0], [T, P]]);
 });
