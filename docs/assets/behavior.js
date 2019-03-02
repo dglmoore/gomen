@@ -17,9 +17,40 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         "projectPath": "README.md",
         "targetPath": "index",
         "pageTitle": "Gomen - Games on Graphs",
-        "title": "Gomen - Games on Graphs"
+        "firstHeader": {
+          "type": "heading",
+          "data": {
+            "level": 1,
+            "title": "Gomen",
+            "slug": "gomen",
+            "isFileHeader": true
+          },
+          "depth": 1
+        },
+        "title": "Gomen"
       },
-      "depth": 1
+      "depth": 1,
+      "outline": []
+    }, {
+      "type": "file",
+      "data": {
+        "language": {
+          "nameMatchers": [".js"],
+          "pygmentsLexer": "javascript",
+          "multiLineComment": ["/*", "*", "*/"],
+          "singleLineComment": ["//"],
+          "ignorePrefix": "}",
+          "foldPrefix": "^",
+          "name": "JavaScript"
+        },
+        "sourcePath": "/home/ec2-user/gomen/src/game.js",
+        "projectPath": "src/game.js",
+        "targetPath": "game",
+        "pageTitle": "game",
+        "title": "game"
+      },
+      "depth": 1,
+      "outline": []
     }, {
       "type": "file",
       "data": {
@@ -36,9 +67,20 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         "projectPath": "main.js",
         "targetPath": "main",
         "pageTitle": "main",
-        "title": "main"
+        "firstHeader": {
+          "type": "heading",
+          "data": {
+            "level": 1,
+            "title": "Gomen Module",
+            "slug": "gomen-module",
+            "isFileHeader": true
+          },
+          "depth": 1
+        },
+        "title": "Gomen Module"
       },
-      "depth": 1
+      "depth": 1,
+      "outline": []
     }
   ];
 

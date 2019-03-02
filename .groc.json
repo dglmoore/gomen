@@ -3,5 +3,6 @@
   "out": "docs",
   "github": false,
   "index-page-title": "Gomen - Games on Graphs",
+  "only-render-newer": false,
   "repository-url": "https://github.com/dglmoore/gomen"
 }
