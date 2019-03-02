@@ -16,21 +16,10 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         "sourcePath": "/home/ec2-user/gomen/README.md",
         "projectPath": "README.md",
         "targetPath": "index",
-        "pageTitle": "index",
-        "firstHeader": {
-          "type": "heading",
-          "data": {
-            "level": 1,
-            "title": "gomen",
-            "slug": "gomen",
-            "isFileHeader": true
-          },
-          "depth": 1
-        },
-        "title": "gomen"
+        "pageTitle": "Gomen - Games on Graphs",
+        "title": "Gomen - Games on Graphs"
       },
-      "depth": 1,
-      "outline": []
+      "depth": 1
     }, {
       "type": "file",
       "data": {
@@ -49,8 +38,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         "pageTitle": "main",
         "title": "main"
       },
-      "depth": 1,
-      "outline": []
+      "depth": 1
     }
   ];
 
