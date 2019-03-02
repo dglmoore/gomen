@@ -33,8 +33,9 @@ const TwoPlayerGame = function(payoff) {
 //
 // There are a number of specific 2-player games for which we've implemented convenience
 // functions:
-// 1. [Prisoner's Dilemma](#the-prisoner39s-dilemma)
-// 2. [Hawk Dove](#hawk-dove)
+// * [Prisoner's Dilemma](#the-prisoner39s-dilemma)
+// * [Hawk-Dove](#hawk-dove)
+// * [Stag Hunt](#stag-hunt)
 // ----------------------------------------------------------------------------
 
 // ### The Prisoner's Dilemma
@@ -81,6 +82,30 @@ TwoPlayerGame.HawkDove = function(T, P) {
         return TwoPlayerGame([[0.0, 1.0], [T, P]]);
     } else {
         throw new RangeError(`Hawk-Dove requires 0 < T < P < 1, got ${{T, P}}`);
+    }
+};
+// ----------------------------------------------------------------------------
+
+// ### Stag Hunt
+//
+// Create the [Stag Hunt](https://en.wikipedia.org/wiki/Stag_hunt) game
+// characterized by a payoff matrix
+// ```
+// 0 1
+// T P
+// ```
+// with `0 < P < T < 1`.
+//
+// #### Examples
+// ```
+// > TwoPlayerGame.StagHunt(0.5, 0.75)
+// { payoff: [ [ 0, 1 ], [ 0.75, 0.5 ] ] }
+// ```
+TwoPlayerGame.StagHunt = function(P, T) {
+    if (0.0 < P && P < T && T < 1.0) {
+        return TwoPlayerGame([[0.0, 1.0], [T, P]]);
+    } else {
+        throw new RangeError(`Stag Hunt requires 0 < P < T < 1, got ${{T, P}}`);
     }
 };
 

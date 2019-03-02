@@ -20,10 +20,11 @@ the first and second players play strategies <code>i</code> and <code>j</code>, 
 };</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="specific-games">Specific Games</h2>
 <p>There are a number of specific 2-player games for which we&#39;ve implemented convenience
 functions:</p>
-<ol>
+<ul>
 <li><a href="#the-prisoner39s-dilemma">Prisoner&#39;s Dilemma</a></li>
-<li><a href="#hawk-dove">Hawk Dove</a></li>
-</ol>
+<li><a href="#hawk-dove">Hawk-Dove</a></li>
+<li><a href="#stag-hunt">Stag Hunt</a></li>
+</ul>
 <hr></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="the-prisoner39s-dilemma">The Prisoner&#39;s Dilemma</h3>
 <p>Create the <a href="https://en.wikipedia.org/wiki/Prisoner%27s_dilemma">Prisoner&#39;s Dilemma</a>
 characterized by a payoff matrix</p>
@@ -51,6 +52,20 @@ T P</code></pre>
         <span class="hljs-keyword">return</span> TwoPlayerGame([[<span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>], [T, P]]);
     } <span class="hljs-keyword">else</span> {
         <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">RangeError</span>(<span class="hljs-string">`Hawk-Dove requires 0 &lt; T &lt; P &lt; 1, got <span class="hljs-subst">${{T, P}</span>}`</span>);
+    }
+};</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="stag-hunt">Stag Hunt</h3>
+<p>Create the <a href="https://en.wikipedia.org/wiki/Stag_hunt">Stag Hunt</a> game
+characterized by a payoff matrix</p>
+<pre><code>0 1
+T P</code></pre>
+<p>with <code>0 &lt; P &lt; T &lt; 1</code>.</p>
+<h4 id="examples">Examples</h4>
+<pre><code>&gt; TwoPlayerGame.StagHunt(0.5, 0.75)
+{ payoff: [ [ 0, 1 ], [ 0.75, 0.5 ] ] }</code></pre></div></div><div class="code"><div class="wrapper">TwoPlayerGame.StagHunt = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">P, T</span>) </span>{
+    <span class="hljs-keyword">if</span> (<span class="hljs-number">0.0</span> &lt; P &amp;&amp; P &lt; T &amp;&amp; T &lt; <span class="hljs-number">1.0</span>) {
+        <span class="hljs-keyword">return</span> TwoPlayerGame([[<span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>], [T, P]]);
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">RangeError</span>(<span class="hljs-string">`Stag Hunt requires 0 &lt; P &lt; T &lt; 1, got <span class="hljs-subst">${{T, P}</span>}`</span>);
     }
 };
 

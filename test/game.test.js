@@ -70,3 +70,19 @@ test.each`
 test.each([[0.5,0.75], [0.25, 0.50]])('HawkDove(%i, %i)', function(T, P) {
     expect(TwoPlayerGame.HawkDove(T, P).payoff).toEqual([[0.0, 1.0], [T, P]]);
 });
+
+test.each`
+    P            | T
+    ${undefined} | ${undefined}
+    ${0.5}       | ${undefined}
+    ${undefined} | ${0.5}
+    ${0.0}       | ${0.0}
+    ${0.5}       | ${1.0}
+    ${0.5}       | ${0.5}
+`('StagHunt throws for invalid parameters', function({ P, T }) {
+    expect(() => TwoPlayerGame.StagHunt(P, T)).toThrow(RangeError);
+});
+
+test.each([[0.5,0.75], [0.25, 0.50]])('StagHunt(%i, %i)', function(P, T) {
+    expect(TwoPlayerGame.StagHunt(P, T).payoff).toEqual([[0.0, 1.0], [T, P]]);
+});
