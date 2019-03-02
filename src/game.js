@@ -28,4 +28,33 @@ const TwoPlayerGame = function(payoff) {
     });
 };
 
+// ## Specific Games
+//
+// There are a number of specific 2-player games for which we've implemented convenience
+// functions:
+// 1. [Prisoner's Dilemma](#the-prisoner39s-dilemma)
+
+// ### The Prisoner's Dilemma
+//
+// Create the [Prisoner's Dilemma](https://en.wikipedia.org/wiki/Prisoner%27s_dilemma)
+// characterized by a payoff matrix
+// ```
+// R 0
+// 1 P
+// ```
+// with `0 < P < R < 1`.
+//
+// #### Examples
+// ```
+// > TwoPlayerGame.PrisonersDilemma(0.5, 0.75)
+// { payoff: [ [ 0.75, 0 ], [ 1, 0.5 ] ] }
+// ```
+TwoPlayerGame.PrisonersDilemma = function(P, R) {
+    if (0.0 < P && P < R && R < 1.0) {
+        return TwoPlayerGame([[R, 0.0], [1.0, P]]);
+    } else {
+        throw new RangeError(`Prisoner's dilemma requires 0 < P < R < 1, got ${{P, R}}`);
+    }
+};
+
 module.exports = TwoPlayerGame;

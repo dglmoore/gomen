@@ -38,3 +38,19 @@ test('Can get payoffs', function() {
     expect(game.getPayoff(1,0)).toBe(3);
     expect(game.getPayoff(1,1)).toBe(4);
 });
+
+test.each`
+    P            | R
+    ${undefined} | ${undefined}
+    ${0.5}       | ${undefined}
+    ${undefined} | ${0.5}
+    ${0.0}       | ${0.0}
+    ${0.5}       | ${1.0}
+    ${0.5}       | ${0.5}
+`('Prisoner\'s Dilemma throws for invalid parameters', function({P, R}) {
+    expect(() => TwoPlayerGame.PrisonersDilemma(P, R)).toThrow(RangeError);
+});
+
+test.each([[0.5,0.75], [0.25, 0.50]])('PrisonersDilemma(%i, %i)', function(P, R) {
+    expect(TwoPlayerGame.PrisonersDilemma(P,R).payoff).toEqual([[R, 0.0], [1.0, P]]);
+});

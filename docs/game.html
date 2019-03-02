@@ -17,6 +17,25 @@ the first and second players play strategies <code>i</code> and <code>j</code>, 
         }
     }), {</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>The payoff matrix is an enumberable member of the returned object.</p></div></div><div class="code"><div class="wrapper">        payoff
     });
+};</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="specific-games">Specific Games</h2>
+<p>There are a number of specific 2-player games for which we&#39;ve implemented convenience
+functions:</p>
+<ol>
+<li><a href="#the-prisoner39s-dilemma">Prisoner&#39;s Dilemma</a></li>
+</ol></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="the-prisoner39s-dilemma">The Prisoner&#39;s Dilemma</h3>
+<p>Create the <a href="https://en.wikipedia.org/wiki/Prisoner%27s_dilemma">Prisoner&#39;s Dilemma</a>
+characterized by a payoff matrix</p>
+<pre><code>R 0
+1 P</code></pre>
+<p>with <code>0 &lt; P &lt; R &lt; 1</code>.</p>
+<h4 id="examples">Examples</h4>
+<pre><code>&gt; TwoPlayerGame.PrisonersDilemma(0.5, 0.75)
+{ payoff: [ [ 0.75, 0 ], [ 1, 0.5 ] ] }</code></pre></div></div><div class="code"><div class="wrapper">TwoPlayerGame.PrisonersDilemma = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">P, R</span>) </span>{
+    <span class="hljs-keyword">if</span> (<span class="hljs-number">0.0</span> &lt; P &amp;&amp; P &lt; R &amp;&amp; R &lt; <span class="hljs-number">1.0</span>) {
+        <span class="hljs-keyword">return</span> TwoPlayerGame([[R, <span class="hljs-number">0.0</span>], [<span class="hljs-number">1.0</span>, P]]);
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">RangeError</span>(<span class="hljs-string">`Prisoner's dilemma requires 0 &lt; P &lt; R &lt; 1, got <span class="hljs-subst">${{P, R}</span>}`</span>);
+    }
 };
 
 <span class="hljs-built_in">module</span>.exports = TwoPlayerGame;</div></div></div></div></body></html>

@@ -55,12 +55,77 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "slug": "two-player-games",
             "isFileHeader": true
           },
-          "depth": 1
+          "depth": 1,
+          "children": [
+            {
+              "type": "heading",
+              "data": {
+                "level": 2,
+                "title": "Specific Games",
+                "slug": "specific-games"
+              },
+              "depth": 2,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "The Prisoner&#39;s Dilemma",
+                    "slug": "the-prisoner39s-dilemma"
+                  },
+                  "depth": 3,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 4,
+                        "title": "Examples",
+                        "slug": "examples"
+                      },
+                      "depth": 4
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         },
         "title": "Two Player Games"
       },
       "depth": 1,
-      "outline": []
+      "outline": [
+        {
+          "type": "heading",
+          "data": {
+            "level": 2,
+            "title": "Specific Games",
+            "slug": "specific-games"
+          },
+          "depth": 2,
+          "children": [
+            {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "The Prisoner&#39;s Dilemma",
+                "slug": "the-prisoner39s-dilemma"
+              },
+              "depth": 3,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 4,
+                    "title": "Examples",
+                    "slug": "examples"
+                  },
+                  "depth": 4
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }, {
       "type": "file",
       "data": {
