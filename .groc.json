@@ -1,0 +1,6 @@
+{
+  "glob": ["README.md", "main.js", "src/*.js"],
+  "out": "docs",
+  "github": false,
+  "repository-url": "https://github.com/dglmoore/gomen"
+}
