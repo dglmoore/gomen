@@ -39,6 +39,27 @@ test('Can get payoffs', function() {
     expect(game.getPayoff(1,1)).toBe(4);
 });
 
+test('Can set payoffs', function() {
+    let game = TwoPlayerGame([[1,2],[3,4]]);
+    game.payoff = [[0,1],[2,3]];
+    expect(game.getPayoff(0,0)).toBe(0);
+    expect(game.getPayoff(0,1)).toBe(1);
+    expect(game.getPayoff(1,0)).toBe(2);
+    expect(game.getPayoff(1,1)).toBe(3);
+});
+
+test('Can modify payoffs', function() {
+    let game = TwoPlayerGame([[1,2],[3,4]]);
+    game.payoff[0][0] = 0;
+    game.payoff[0][1] = 1;
+    game.payoff[1][0] = 2;
+    game.payoff[1][1] = 3;
+    expect(game.getPayoff(0,0)).toBe(0);
+    expect(game.getPayoff(0,1)).toBe(1);
+    expect(game.getPayoff(1,0)).toBe(2);
+    expect(game.getPayoff(1,1)).toBe(3);
+});
+
 test.each`
     P            | R
     ${undefined} | ${undefined}
