@@ -4,7 +4,8 @@
   "description": "Brilliant games on graphs with some informational flair",
   "main": "main.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint main.js src test"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,8 @@
   },
   "homepage": "https://github.com/dglmoore/gomen#readme",
   "devDependencies": {
+    "eslint": "^5.15.0",
+    "eslint-plugin-jest": "^22.3.0",
     "jest": "^24.1.0"
   }
 }
