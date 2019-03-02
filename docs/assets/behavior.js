@@ -123,6 +123,25 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                       "depth": 4
                     }
                   ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Deadlock",
+                    "slug": "deadlock"
+                  },
+                  "depth": 3,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 4,
+                        "title": "Examples",
+                        "slug": "examples"
+                      },
+                      "depth": 4
+                    }
+                  ]
                 }
               ]
             }
@@ -185,6 +204,25 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "level": 3,
                 "title": "Stag Hunt",
                 "slug": "stag-hunt"
+              },
+              "depth": 3,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 4,
+                    "title": "Examples",
+                    "slug": "examples"
+                  },
+                  "depth": 4
+                }
+              ]
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "Deadlock",
+                "slug": "deadlock"
               },
               "depth": 3,
               "children": [

@@ -86,3 +86,19 @@ test.each`
 test.each([[0.5,0.75], [0.25, 0.50]])('StagHunt(%i, %i)', function(P, T) {
     expect(TwoPlayerGame.StagHunt(P, T).payoff).toEqual([[0.0, 1.0], [T, P]]);
 });
+
+test.each`
+    R            | P
+    ${undefined} | ${undefined}
+    ${0.5}       | ${undefined}
+    ${undefined} | ${0.5}
+    ${0.0}       | ${0.0}
+    ${0.5}       | ${1.0}
+    ${0.5}       | ${0.5}
+`('Deadlock throws for invalid parameters', function({ R, P }) {
+    expect(() => TwoPlayerGame.Deadlock(R, P)).toThrow(RangeError);
+});
+
+test.each([[0.5,0.75], [0.25, 0.50]])('Deadlock(%i, %i)', function(R, P) {
+    expect(TwoPlayerGame.Deadlock(R, P).payoff).toEqual([[R, 0.0], [1.0, P]]);
+});

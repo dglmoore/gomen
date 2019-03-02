@@ -36,6 +36,7 @@ const TwoPlayerGame = function(payoff) {
 // * [Prisoner's Dilemma](#the-prisoner39s-dilemma)
 // * [Hawk-Dove](#hawk-dove)
 // * [Stag Hunt](#stag-hunt)
+// * [Deadlock](#deadlock)
 // ----------------------------------------------------------------------------
 
 // ### The Prisoner's Dilemma
@@ -106,6 +107,30 @@ TwoPlayerGame.StagHunt = function(P, T) {
         return TwoPlayerGame([[0.0, 1.0], [T, P]]);
     } else {
         throw new RangeError(`Stag Hunt requires 0 < P < T < 1, got ${{T, P}}`);
+    }
+};
+// ----------------------------------------------------------------------------
+
+// ### Deadlock
+//
+// Create the [Deadlock](https://en.wikipedia.org/wiki/Deadlock_(game_theory))
+// game characterized by a payoff matrix
+// ```
+// R 0
+// 1 P
+// ```
+// with `0 < R < P < 1`.
+//
+// #### Examples
+// ```
+// > TwoPlayerGame.Deadlock(0.5, 0.75)
+// { payoff: [ [ 0.5, 0 ], [ 1, 0.75 ] ] }
+// ```
+TwoPlayerGame.Deadlock = function(R, P) {
+    if (0.0 < R && R < P && P < 1.0) {
+        return TwoPlayerGame([[R, 0.0], [1.0, P]]);
+    } else {
+        throw new RangeError(`Deadlock requires 0 < R < P < 1, got ${{R, P}}`);
     }
 };
 
