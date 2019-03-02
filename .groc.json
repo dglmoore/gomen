@@ -2,5 +2,6 @@
   "glob": ["README.md", "main.js", "src/*.js"],
   "out": "docs",
   "github": false,
+  "index-page-title": "Gomen - Games on Graphs",
   "repository-url": "https://github.com/dglmoore/gomen"
 }
