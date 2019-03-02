@@ -23,6 +23,10 @@
     "url": "https://github.com/dglmoore/gomen/issues"
   },
   "homepage": "https://github.com/dglmoore/gomen#readme",
+  "jest": {
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true
+  },
   "devDependencies": {
     "eslint": "^5.15.0",
     "eslint-plugin-jest": "^22.3.0",
