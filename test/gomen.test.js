@@ -1,5 +1,5 @@
 const gomen = require('../main.js');
 
-test('canary test', function() {
-    expect(gomen.Game).toBeDefined();
+test('Exposes TwoPlayerGame', function() {
+    expect(gomen.TwoPlayerGame).toBeDefined();
 });
