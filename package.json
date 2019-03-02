@@ -1,0 +1,28 @@
+{
+  "name": "gomen",
+  "version": "1.0.0",
+  "description": "Brilliant games on graphs with some informational flair",
+  "main": "main.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dglmoore/gomen.git"
+  },
+  "keywords": [
+    "game",
+    "graph",
+    "information",
+    "network"
+  ],
+  "author": "Douglas G. Moore <doug@dglmoore.com> (https://dglmoore.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dglmoore/gomen/issues"
+  },
+  "homepage": "https://github.com/dglmoore/gomen#readme",
+  "devDependencies": {
+    "jest": "^24.1.0"
+  }
+}
