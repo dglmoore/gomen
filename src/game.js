@@ -42,8 +42,8 @@ const TwoPlayerGame = function(payoff) {
 
 // ### The Prisoner's Dilemma
 //
-// Create the [Prisoner's Dilemma](https://en.wikipedia.org/wiki/Prisoner%27s_dilemma)
-// characterized by a payoff matrix
+// Create the [Prisoner's Dilemma][prisoners-dilemma] characterized by a payoff
+// matrix
 // ```
 // R 0
 // 1 P
@@ -55,6 +55,7 @@ const TwoPlayerGame = function(payoff) {
 // > TwoPlayerGame.PrisonersDilemma(0.5, 0.75)
 // { payoff: [ [ 0.75, 0 ], [ 1, 0.5 ] ] }
 // ```
+// [prisoners-dilemma]: https://en.wikipedia.org/wiki/Prisoner%27s_dilemma "Prisoner's Dilemma"
 TwoPlayerGame.PrisonersDilemma = function(P, R) {
     if (0.0 < P && P < R && R < 1.0) {
         return TwoPlayerGame([[R, 0.0], [1.0, P]]);
@@ -66,8 +67,7 @@ TwoPlayerGame.PrisonersDilemma = function(P, R) {
 
 // ### Hawk-Dove
 //
-// Create the [Hawk-Dove](https://en.wikipedia.org/wiki/Chicken_(game)) game
-// characterized by a payoff matrix
+// Create the [Hawk-Dove][hawk-dove] game characterized by a payoff matrix
 // ```
 // 0 1
 // T P
@@ -79,6 +79,7 @@ TwoPlayerGame.PrisonersDilemma = function(P, R) {
 // > TwoPlayerGame.HawkDove(0.5, 0.75)
 // { payoff: [ [ 0, 1 ], [ 0.5, 0.75 ] ] }
 // ```
+// [hawk-dove]: https://en.wikipedia.org/wiki/Chicken_(game) "Hawk-Dove"
 TwoPlayerGame.HawkDove = function(T, P) {
     if (0.0 < T && T < P && P < 1.0) {
         return TwoPlayerGame([[0.0, 1.0], [T, P]]);
@@ -90,8 +91,7 @@ TwoPlayerGame.HawkDove = function(T, P) {
 
 // ### Stag Hunt
 //
-// Create the [Stag Hunt](https://en.wikipedia.org/wiki/Stag_hunt) game
-// characterized by a payoff matrix
+// Create the [Stag Hunt][stag-hunt] game characterized by a payoff matrix
 // ```
 // 0 1
 // T P
@@ -103,6 +103,7 @@ TwoPlayerGame.HawkDove = function(T, P) {
 // > TwoPlayerGame.StagHunt(0.5, 0.75)
 // { payoff: [ [ 0, 1 ], [ 0.75, 0.5 ] ] }
 // ```
+// [stag-hunt]: https://en.wikipedia.org/wiki/Stag_hunt "Stag Hunt"
 TwoPlayerGame.StagHunt = function(P, T) {
     if (0.0 < P && P < T && T < 1.0) {
         return TwoPlayerGame([[0.0, 1.0], [T, P]]);
@@ -114,8 +115,7 @@ TwoPlayerGame.StagHunt = function(P, T) {
 
 // ### Deadlock
 //
-// Create the [Deadlock](https://en.wikipedia.org/wiki/Deadlock_(game_theory))
-// game characterized by a payoff matrix
+// Create the [Deadlock][deadlock] game characterized by a payoff matrix
 // ```
 // R 0
 // 1 P
@@ -127,6 +127,7 @@ TwoPlayerGame.StagHunt = function(P, T) {
 // > TwoPlayerGame.Deadlock(0.5, 0.75)
 // { payoff: [ [ 0.5, 0 ], [ 1, 0.75 ] ] }
 // ```
+// [deadlock]: https://en.wikipedia.org/wiki/Deadlock_(game_theory) "Deadlock"
 TwoPlayerGame.Deadlock = function(R, P) {
     if (0.0 < R && R < P && P < 1.0) {
         return TwoPlayerGame([[R, 0.0], [1.0, P]]);
