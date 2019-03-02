@@ -55,12 +55,33 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "slug": "arenas-where-games-are-played",
             "isFileHeader": true
           },
-          "depth": 1
+          "depth": 1,
+          "children": [
+            {
+              "type": "heading",
+              "data": {
+                "level": 2,
+                "title": "Prototype",
+                "slug": "prototype"
+              },
+              "depth": 2
+            }
+          ]
         },
         "title": "Arenas - Where Games are Played"
       },
       "depth": 1,
-      "outline": []
+      "outline": [
+        {
+          "type": "heading",
+          "data": {
+            "level": 2,
+            "title": "Prototype",
+            "slug": "prototype"
+          },
+          "depth": 2
+        }
+      ]
     }, {
       "type": "file",
       "data": {
