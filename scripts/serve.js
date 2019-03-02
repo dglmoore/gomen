@@ -1,7 +1,12 @@
 const express = require('express');
+const { spawn } = require('child_process');
 
-(function() {
-    let app = express();
-    app.use(express.static('./docs'));
-    app.listen(8080);
-}())
+const groc = spawn('groc');
+
+groc.stdout.on('data', (data) => process.stdout.write(data));
+
+groc.stderr.on('data', (data) => process.stderr.write(data));
+
+groc.on('close', function(code) {
+    express().use(express.static('./docs')).listen(8080);
+});
