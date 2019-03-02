@@ -1,5 +1,18 @@
 # Gomen
 
+| **Build Status**                                                                                |
+|:-----------------------------------------------------------------------------------------------:|
+| [![][travis-img]][travis-url] [![][appveyor-img]][appveyor-url] [![][codecov-img]][codecov-url] |
+
+[travis-img]: https://travis-ci.com/dglmoore/gomen.svg?branch=master
+[travis-url]: https://travis-ci.com/dglmoore/gomen
+
+[appveyor-img]: https://ci.appveyor.com/api/projects/status/8pbhg2lc08mig98h?svg=true
+[appveyor-url]: https://ci.appveyor.com/project/dglmoore/gomen
+
+[codecov-img]: https://codecov.io/gh/dglmoore/gomen/branch/master/graph/badge.svg
+[codecov-url]: https://codecov.io/gh/dglmoore/gomen
+
 Imagine a network of agents playing a two-player game in time, changing their
 strategies in time. _Gomen_ is a small project aiming to determine if
 information-theoretic tools such as mutual information or transfer entropy can
