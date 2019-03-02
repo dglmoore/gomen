@@ -29,12 +29,24 @@ const Arena = function(game, graph) {
 
     // ## Prototype
 
-    // The `Arena`'s prototype provides the following functionality
     const proto = {
-        // * One can ask for the `size` of the arena, i.e. the number of
-        //   agents.
+        // Get the `size` of the arena, i.e. the number of agents.
         size() {
             return this.graph.order();
+        },
+
+        // Compute the `payoff` of each agent's possible strategy against all
+        // agent's current strategy `ss`. The result is a `size() x 2` matrix
+        // with element `[i][s]` the payoff agent `i` would receive if it had
+        // chosen strategy `s`.
+        payoff(ss) {
+            if (!Array.isArray(ss)) {
+                throw new TypeError(`strategies must be an array, got ${ss}`);
+            } else if (ss.length !== this.size()) {
+                const msg = 'strategies must have same size as arena';
+                const res = `expected ${this.size()}, got ${ss.length}`;
+                throw new RangeError(`${msg}; ${res}`);
+            }
         }
     };
 
