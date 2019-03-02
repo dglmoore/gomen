@@ -102,3 +102,19 @@ test.each`
 test.each([[0.5,0.75], [0.25, 0.50]])('Deadlock(%i, %i)', function(R, P) {
     expect(TwoPlayerGame.Deadlock(R, P).payoff).toEqual([[R, 0.0], [1.0, P]]);
 });
+
+test.each`
+    T            | S
+    ${undefined} | ${undefined}
+    ${0.5}       | ${undefined}
+    ${undefined} | ${0.5}
+    ${0.0}       | ${0.0}
+    ${0.5}       | ${1.0}
+    ${0.5}       | ${0.5}
+`('Harmony throws for invalid parameters', function({ T, S }) {
+    expect(() => TwoPlayerGame.Harmony(T, S)).toThrow(RangeError);
+});
+
+test.each([[0.5,0.75], [0.25, 0.50]])('Harmony(%i, %i)', function(T, S) {
+    expect(TwoPlayerGame.Harmony(T, S).payoff).toEqual([[1.0, S], [T, 0.0]]);
+});

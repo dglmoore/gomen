@@ -37,6 +37,7 @@ const TwoPlayerGame = function(payoff) {
 // * [Hawk-Dove](#hawk-dove)
 // * [Stag Hunt](#stag-hunt)
 // * [Deadlock](#deadlock)
+// * [Harmony](#harmony)
 // ----------------------------------------------------------------------------
 
 // ### The Prisoner's Dilemma
@@ -131,6 +132,29 @@ TwoPlayerGame.Deadlock = function(R, P) {
         return TwoPlayerGame([[R, 0.0], [1.0, P]]);
     } else {
         throw new RangeError(`Deadlock requires 0 < R < P < 1, got ${{R, P}}`);
+    }
+};
+// ----------------------------------------------------------------------------
+
+// ### Harmony
+//
+// Create the Harmony game characterized by a payoff matrix
+// ```
+// 1 S
+// T 0
+// ```
+// with `0 < T < S < 1`.
+//
+// #### Examples
+// ```
+// > TwoPlayerGame.Harmony(0.5, 0.75)
+// { payoff: [ [ 1, 0.75 ], [ 0.5, 0 ] ] }
+// ```
+TwoPlayerGame.Harmony = function(T, S) {
+    if (0.0 < T && T < S && S < 1.0) {
+        return TwoPlayerGame([[1.0, S], [T, 0.0]]);
+    } else {
+        throw new RangeError(`Harmony requires 0 < T < S < 1, got ${{T, S}}`);
     }
 };
 

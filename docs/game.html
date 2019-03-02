@@ -25,6 +25,7 @@ functions:</p>
 <li><a href="#hawk-dove">Hawk-Dove</a></li>
 <li><a href="#stag-hunt">Stag Hunt</a></li>
 <li><a href="#deadlock">Deadlock</a></li>
+<li><a href="#harmony">Harmony</a></li>
 </ul>
 <hr></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="the-prisoner39s-dilemma">The Prisoner&#39;s Dilemma</h3>
 <p>Create the <a href="https://en.wikipedia.org/wiki/Prisoner%27s_dilemma">Prisoner&#39;s Dilemma</a>
@@ -81,6 +82,19 @@ game characterized by a payoff matrix</p>
         <span class="hljs-keyword">return</span> TwoPlayerGame([[R, <span class="hljs-number">0.0</span>], [<span class="hljs-number">1.0</span>, P]]);
     } <span class="hljs-keyword">else</span> {
         <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">RangeError</span>(<span class="hljs-string">`Deadlock requires 0 &lt; R &lt; P &lt; 1, got <span class="hljs-subst">${{R, P}</span>}`</span>);
+    }
+};</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="harmony">Harmony</h3>
+<p>Create the Harmony game characterized by a payoff matrix</p>
+<pre><code>1 S
+T 0</code></pre>
+<p>with <code>0 &lt; T &lt; S &lt; 1</code>.</p>
+<h4 id="examples">Examples</h4>
+<pre><code>&gt; TwoPlayerGame.Harmony(0.5, 0.75)
+{ payoff: [ [ 1, 0.75 ], [ 0.5, 0 ] ] }</code></pre></div></div><div class="code"><div class="wrapper">TwoPlayerGame.Harmony = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T, S</span>) </span>{
+    <span class="hljs-keyword">if</span> (<span class="hljs-number">0.0</span> &lt; T &amp;&amp; T &lt; S &amp;&amp; S &lt; <span class="hljs-number">1.0</span>) {
+        <span class="hljs-keyword">return</span> TwoPlayerGame([[<span class="hljs-number">1.0</span>, S], [T, <span class="hljs-number">0.0</span>]]);
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">RangeError</span>(<span class="hljs-string">`Harmony requires 0 &lt; T &lt; S &lt; 1, got <span class="hljs-subst">${{T, S}</span>}`</span>);
     }
 };
 
