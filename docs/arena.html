@@ -4,30 +4,45 @@ pairs of agents can play each other.</p></div></div><div class="code"><div class
         <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">RangeError</span>(<span class="hljs-string">'graph is empty'</span>);</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>The <code>graph</code> may not have any disconnected agents, i.e. everyone must
 have someone to play with.</p></div></div><div class="code"><div class="wrapper">    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Array</span>.from(graph.degree().values()).includes(<span class="hljs-number">0</span>)) {
         <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">RangeError</span>(<span class="hljs-string">'graph has a disconnected node'</span>);
-    }</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>In order to completely specify how the games should be played, each edge
-of the graph must be labled with which of it&#39;s two vertex agents will be
-playing first player, e.g.</p>
-<pre><code>&gt; graph.getEdgeData(0, 1)
-{ first: 0 }</code></pre></div></div><div class="code"><div class="wrapper">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> edge <span class="hljs-keyword">of</span> graph.edges(<span class="hljs-literal">true</span>)) {
-        <span class="hljs-keyword">let</span> [u, v, { first }] = edge;
-        <span class="hljs-keyword">if</span> (first === <span class="hljs-literal">undefined</span> || (first !== u &amp;&amp; first !== v)) {
-            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">RangeError</span>(<span class="hljs-string">`graph has a mislabeled edge; got <span class="hljs-subst">${JSON.stringify(edge)}</span>`</span>);
-        }
-    }</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="prototype">Prototype</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>The <code>Arena</code>&#39;s prototype provides the following functionality</p></div></div><div class="code"><div class="wrapper">    <span class="hljs-keyword">const</span> proto = {</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Get the <code>size</code> of the arena, i.e. the number of agents.</p></div></div><div class="code"><div class="wrapper">        size() {
+    }</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="prototype">Prototype</h2>
+<p>There are a few things that an <code>Arena</code> needs to be able to do. The
+prototype of the object provides this functionality.</p></div></div><div class="code"><div class="wrapper">    <span class="hljs-keyword">const</span> proto = {</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p><em><strong><code>size()</code></strong></em></p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>First of all, we need to be able to get the <code>size</code> of the <code>Arena</code>,
+i.e. the number of agents. This is particularly useful for
+allocating arrays and error checking.</p></div></div><div class="code"><div class="wrapper">        size() {
             <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.graph.order();
-        },</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Compute the <code>payoff</code> of each agent&#39;s possible strategy against all
-agent&#39;s current strategy <code>ss</code>. The result is a <code>size() x 2</code> matrix
-with element <code>[i][s]</code> the payoff agent <code>i</code> would receive if it had
-chosen strategy <code>s</code>.</p></div></div><div class="code"><div class="wrapper">        payoff(ss) {
-            <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">Array</span>.isArray(ss)) {
-                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">`strategies must be an array, got <span class="hljs-subst">${ss}</span>`</span>);
-            } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (ss.length !== <span class="hljs-keyword">this</span>.size()) {
+        },</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr>
+<p><em><strong><code>payoffs(ss)</code></strong></em></p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Next, we need to be able to determine the counterfactual <code>payoffs</code>
+that each player could have recieved given all of the agents&#39;
+previous strategies <code>ss</code>.</p></div></div><div class="code"><div class="wrapper">        payoffs(ss) {</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>The strategies <code>ss</code> must be an array. If that&#39;s not the case, we
+throw a <code>TypeError</code>.</p></div></div><div class="code"><div class="wrapper">            <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">Array</span>.isArray(ss)) {
+                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">`strategies must be an array, got <span class="hljs-subst">${ss}</span>`</span>);</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>We also need to make sure the array is the right size, namely
+that each agent has a strategy, and we throw a <code>RangeError</code> if
+that&#39;s not true.</p></div></div><div class="code"><div class="wrapper">            } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (ss.length !== <span class="hljs-keyword">this</span>.size()) {
                 <span class="hljs-keyword">const</span> msg = <span class="hljs-string">'strategies must have same size as arena'</span>;
                 <span class="hljs-keyword">const</span> res = <span class="hljs-string">`expected <span class="hljs-subst">${this.size()}</span>, got <span class="hljs-subst">${ss.length}</span>`</span>;
                 <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">RangeError</span>(<span class="hljs-string">`<span class="hljs-subst">${msg}</span>; <span class="hljs-subst">${res}</span>`</span>);
+            }</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>We then create a <code>size() x 2</code> matrix of <code>payoffs</code> where the
+<code>[i][s]</code> element corresponds to the total pay off the <code>i</code>th
+agent would have recieved had they played strategy <code>s</code> in the
+previous round of games.
+This amounts to looping over each of the agents, then each of
+that agent&#39;s neighbors, and then the possible strategies the
+agent could have played. Within this looping structure, we
+accumulate the payoff for each such combination.</p></div></div><div class="code"><div class="wrapper">            <span class="hljs-keyword">const</span> size = <span class="hljs-keyword">this</span>.size();
+            <span class="hljs-keyword">const</span> payoffs = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(size);
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; size; ++i) {
+                payoffs[i] = [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>];
+                <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j <span class="hljs-keyword">of</span> <span class="hljs-keyword">this</span>.graph.neighbors(i)) {
+                    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> s = <span class="hljs-number">0</span>; s &lt; <span class="hljs-number">2</span>; ++s) {
+                        payoffs[i][s] += <span class="hljs-keyword">this</span>.game.getPayoff(s, ss[j]);
+                    }
+                }
             }
+            <span class="hljs-keyword">return</span> payoffs;
         }
-    };</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>The resulting object exposes <code>game</code> and <code>graph</code> as enumerable members.</p></div></div><div class="code"><div class="wrapper">    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Object</span>.assign(<span class="hljs-built_in">Object</span>.create(proto), { game, graph });
+    };</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="object-creation">Object Creation</h2>
+<p>The resulting object uses the above prototype, and exposes the <code>game</code>
+and <code>graph</code> to the user as enumerable members.</p></div></div><div class="code"><div class="wrapper">    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Object</span>.assign(<span class="hljs-built_in">Object</span>.create(proto), { game, graph });
 };
 
 <span class="hljs-built_in">module</span>.exports = Arena;</div></div></div></div></body></html>

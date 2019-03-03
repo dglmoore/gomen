@@ -1,5 +1,5 @@
 const { TwoPlayerGame, Arena } = require('../main.js');
-const { Graph, completeGraph, emptyGraph } = require('jsnetworkx');
+const { completeGraph, emptyGraph } = require('jsnetworkx');
 
 test('Throws on empty graph', function() {
     const game = TwoPlayerGame.PrisonersDilemma(0.5, 0.75);
@@ -23,21 +23,35 @@ test.each([[2],[3],[4]])('payoff throws if strategies is not array', function(n)
     const game = TwoPlayerGame.PrisonersDilemma(0.5, 0.75);
     const graph = completeGraph(n);
     const arena = Arena(game, graph);
-    expect(() => arena.payoff(5)).toThrow(TypeError);
-    expect(() => arena.payoff({0: 1})).toThrow(TypeError);
-    expect(() => arena.payoff('string')).toThrow(TypeError);
+    expect(() => arena.payoffs(5)).toThrow(TypeError);
+    expect(() => arena.payoffs({0: 1})).toThrow(TypeError);
+    expect(() => arena.payoffs('string')).toThrow(TypeError);
 });
 
 test.each([[2],[3],[4]])('payoff throws if strategies size !== arena size', function(n) {
     const game = TwoPlayerGame.PrisonersDilemma(0.5, 0.75);
     const graph = completeGraph(n);
     const arena = Arena(game, graph);
-    expect(() => arena.payoff(new Array(n-1).fill(0))).toThrow(RangeError);
-    expect(() => arena.payoff(new Array(n+1).fill(0))).toThrow(RangeError);
+    expect(() => arena.payoffs(new Array(n-1).fill(0))).toThrow(RangeError);
+    expect(() => arena.payoffs(new Array(n+1).fill(0))).toThrow(RangeError);
 });
 
-test.each([[2],[3],[4]])('payoff throws if strategies size != arena size', function(n) {
+test.each`
+    n    | ss         | payoffs
+    ${2} | ${[0,0]}   | ${[[0.75, 1.00], [0.75, 1.00]]}
+    ${2} | ${[0,1]}   | ${[[0.00, 0.50], [0.75, 1.00]]}
+    ${2} | ${[1,0]}   | ${[[0.75, 1.00], [0.00, 0.50]]}
+    ${2} | ${[1,1]}   | ${[[0.00, 0.50], [0.00, 0.50]]}
+    ${3} | ${[0,0,0]} | ${[[1.50, 2.00], [1.50, 2.00], [1.50, 2.00]]}
+    ${3} | ${[0,0,1]} | ${[[0.75, 1.50], [0.75, 1.50], [1.50, 2.00]]}
+    ${3} | ${[0,1,0]} | ${[[0.75, 1.50], [1.50, 2.00], [0.75, 1.50]]}
+    ${3} | ${[0,1,1]} | ${[[0.00, 1.00], [0.75, 1.50], [0.75, 1.50]]}
+    ${3} | ${[1,0,0]} | ${[[1.50, 2.00], [0.75, 1.50], [0.75, 1.50]]}
+    ${3} | ${[1,0,1]} | ${[[0.75, 1.50], [0.00, 1.00], [0.75, 1.50]]}
+    ${3} | ${[1,1,0]} | ${[[0.75, 1.50], [0.75, 1.50], [0.00, 1.00]]}
+    ${3} | ${[1,1,1]} | ${[[0.00, 1.00], [0.00, 1.00], [0.00, 1.00]]}
+`('correct payoff - n = $n, ss = $ss', function({ n, ss, payoffs }) {
     const game = TwoPlayerGame.PrisonersDilemma(0.5, 0.75);
     const graph = completeGraph(n);
-    Arena(game, graph).payoff(new Array(n).fill(0));
+    expect(Arena(game, graph).payoffs(ss)).toEqual(payoffs);
 });

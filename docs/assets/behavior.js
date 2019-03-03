@@ -65,6 +65,14 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "slug": "prototype"
               },
               "depth": 2
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 2,
+                "title": "Object Creation",
+                "slug": "object-creation"
+              },
+              "depth": 2
             }
           ]
         },
@@ -78,6 +86,14 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "level": 2,
             "title": "Prototype",
             "slug": "prototype"
+          },
+          "depth": 2
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 2,
+            "title": "Object Creation",
+            "slug": "object-creation"
           },
           "depth": 2
         }
