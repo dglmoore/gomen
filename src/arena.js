@@ -13,19 +13,6 @@ const Arena = function(game, graph) {
     } else if (Array.from(graph.degree().values()).includes(0)) {
         throw new RangeError('graph has a disconnected node');
     }
-    // In order to completely specify how the games should be played, each edge
-    // of the graph must be labled with which of it's two vertex agents will be
-    // playing first player, e.g.
-    // ```
-    // > graph.getEdgeData(0, 1)
-    // { first: 0 }
-    // ```
-    for (let edge of graph.edges(true)) {
-        let [u, v, { first }] = edge;
-        if (first === undefined || (first !== u && first !== v)) {
-            throw new RangeError(`graph has a mislabeled edge; got ${JSON.stringify(edge)}`);
-        }
-    }
 
     // ## Prototype
 
