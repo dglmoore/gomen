@@ -24,5 +24,5 @@ To answer this question, we need a number of components
 1. A specification of a two-player game ([TwoPlayerGame](game.html))
 2. An arena, i.e. a graph, on which the game is played ([Arena](arena.html))
 3. Rules for switching strategies ([Rules](rule.html))
-4. A scheme for updating player strategies ([Scheme](#))
+4. A scheme for updating player strategies ([Scheme](scheme.html))
 5. Information-theoretic methods ([Information](#))
