@@ -1,9 +1,10 @@
 // # Arenas - Where Games are Played
 
-// An `Arena` consists of a 2-player `game` played by all agents, and an
-// undirected `graph` representing the neighborhoods of each agent, i.e. which
-// pairs of agents can play each other.
-const Arena = function(game, graph) {
+// An `Arena` consists of a 2-player `game` played by all agents, an undirected
+// `graph` representing the neighborhoods of each agent, i.e. which pairs of
+// agents can play each other, and a `scheme` which the agents use to choose a
+// strategy.
+const Arena = function(game, graph, scheme) {
     // The `graph` must be non-empty, i.e. must have at least one node.
     if (graph.order() === 0) {
         throw new RangeError('graph is empty');
@@ -70,6 +71,12 @@ const Arena = function(game, graph) {
                 }
             }
             return payoffs;
+        },
+
+        // Play a round of the game provided initial strategies `ss`
+        // using the random number generator `rng`.
+        round(ss, rng) {
+            return this.scheme(this.graph, ss, this.payoffs(ss), rng);
         }
     };
     // ************************************************************************
@@ -78,7 +85,7 @@ const Arena = function(game, graph) {
     //
     // The resulting object uses the above prototype, and exposes the `game`
     // and `graph` to the user as enumerable members.
-    return Object.assign(Object.create(proto), { game, graph });
+    return Object.assign(Object.create(proto), { game, graph, scheme });
 };
 
 module.exports = Arena;

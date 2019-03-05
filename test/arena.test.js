@@ -1,5 +1,7 @@
-const { TwoPlayerGame, Arena } = require('../main.js');
-const { completeGraph, emptyGraph } = require('jsnetworkx');
+const { TwoPlayerGame, Arena, Scheme } = require('../main.js');
+const { cycleGraph, completeGraph, emptyGraph } = require('jsnetworkx');
+const random = require('random');
+const seedrandom = require('seedrandom');
 
 test('Throws on empty graph', function() {
     const game = TwoPlayerGame.PrisonersDilemma(0.5, 0.75);
@@ -54,4 +56,20 @@ test.each`
     const game = TwoPlayerGame.PrisonersDilemma(0.5, 0.75);
     const graph = completeGraph(n);
     expect(Arena(game, graph).payoffs(ss)).toEqual(payoffs);
+});
+
+test('play cf', function() {
+    const rng = random.clone(seedrandom(1879));
+    const a = Arena(TwoPlayerGame.StagHunt(1/3, 2/3), cycleGraph(5), Scheme.cf());
+    expect(a.round([0,0,1,1,0], rng)).toEqual([1,0,0,1,0]);
+
+    a.round([0,0,1,1,0]);
+});
+
+test('play imitation', function() {
+    const rng = random.clone(seedrandom(1879));
+    const a = Arena(TwoPlayerGame.StagHunt(1/3, 2/3), cycleGraph(5), Scheme.imitation());
+    expect(a.round([0,0,1,1,0], rng)).toEqual([0,1,1,1,0]);
+
+    a.round([0,0,1,1,0]);
 });
