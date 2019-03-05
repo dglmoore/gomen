@@ -1,0 +1,85 @@
+<!DOCTYPE html><html lang="en"><head><title>scheme</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="scheme"><meta name="groc-project-path" content="src/scheme.js"><meta name="groc-github-url" content="https://github.com/dglmoore/gomen"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/dglmoore/gomen/blob/master/src/scheme.js">src/scheme.js</a></div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="schemes">Schemes</h1>
+<p>Schemes specify how an agent decides how which strategy to use in the next
+round of the game. Each scheme takes a <a href="rule.html">Rule</a> as an argument, and
+returns a function with signature:</p>
+<pre><code>function(graph, strategies, payoffs, rng): Array</code></pre>
+<p>which each scheme can use to it&#39;s liking to return a new array of
+strategies.
+The <code>strategies</code> argument is an array of strategies, one for each agent.
+The <code>payoffs</code> argument is a matrix of counterfactual payoffs as may be
+returned by <a href="arena.html"><code>Arena.prototype.payoffs</code></a>. The <code>rng</code> argument is
+an (optional) random number generator providing at least two methods:
+<code>float</code> and <code>int</code>. If <code>rng === undefined</code>, the
+<a href="https://www.npmjs.com/package/random">random</a> package provides a default
+value.</p></div></div><div class="code"><div class="wrapper"><span class="hljs-keyword">const</span> random = <span class="hljs-built_in">require</span>(<span class="hljs-string">'random'</span>);
+<span class="hljs-keyword">const</span> Rule = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./rule.js'</span>);</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Of course there are requirements on the <code>graph</code>, <code>strategies</code> and <code>payoffs</code>.
+In particular:</p></div></div><div class="code"><div class="wrapper"><span class="hljs-keyword">const</span> checkArgs = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">graph, strategies, payoffs</span>) </span>{</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><ol>
+<li><code>strategies</code> must be an <code>Array</code>.</li>
+</ol></div></div><div class="code"><div class="wrapper">    <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">Array</span>.isArray(strategies)) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">`strategies must be an array, got <span class="hljs-subst">${JSON.stringify(strategies)}</span>`</span>);</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><ol>
+<li><code>strategies</code> must have exactly as many elements as agents in the
+graph.</li>
+</ol></div></div><div class="code"><div class="wrapper">    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (strategies.length !== graph.order()) {
+        <span class="hljs-keyword">const</span> msg = <span class="hljs-string">'strategies must have same size as arena'</span>;
+        <span class="hljs-keyword">const</span> res = <span class="hljs-string">`expected <span class="hljs-subst">${graph.order()}</span>, got <span class="hljs-subst">${strategies.length}</span>`</span>;
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">RangeError</span>(<span class="hljs-string">`<span class="hljs-subst">${msg}</span>; <span class="hljs-subst">${res}</span>`</span>);</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><ol>
+<li><code>payoffs</code> must be a matrix</li>
+</ol></div></div><div class="code"><div class="wrapper">    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">Array</span>.isArray(payoffs)
+            || payoffs.length == <span class="hljs-number">0</span>
+            || payoffs.some(p =&gt; !<span class="hljs-built_in">Array</span>.isArray(p))) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">`payoffs must be a matrix, got <span class="hljs-subst">${JSON.stringify(payoffs)}</span>`</span>);</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><ol>
+<li><code>payoffs</code> must have as many rows as agents in the graphs, and as many
+columns as possible strategies.</li>
+</ol></div></div><div class="code"><div class="wrapper">    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (payoffs.length !== graph.size() || payoffs.some(p =&gt; p.length != <span class="hljs-number">2</span>)) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">RangeError</span>(<span class="hljs-string">'payoffs matrix has incorrect size'</span>);
+    }
+};</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="counterfactual-scheme">Counterfactual Scheme</h2>
+<p>The counterfactual scheme <code>cf</code> specifies that an agent should change its
+strategy based entirely on the difference in its counterfactual payoffs
+according to the <code>rule</code>.</p></div></div><div class="code"><div class="wrapper"><span class="hljs-keyword">const</span> cf = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">rule = Rule.sigmoid(</span>)) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">graph, ss, ps, rng</span>) </span>{
+        checkArgs(graph, ss, ps);
+
+        <span class="hljs-keyword">if</span> (rng === <span class="hljs-literal">undefined</span>) {
+            rng = random;
+        }
+
+        <span class="hljs-keyword">const</span> dst = ss.slice();
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>, len = ss.length; i &lt; len; ++i) {
+            dst[i] = (rng.float() &lt;= rule(ps[i][<span class="hljs-number">1</span>] - ps[i][<span class="hljs-number">0</span>])) | <span class="hljs-number">0</span>;
+        }
+        <span class="hljs-keyword">return</span> dst;
+    };
+};</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="imitation-scheme">Imitation Scheme</h2>
+<p>The <code>imitation</code> scheme specifies that an agent should change its strategy to
+that used by a random neighbor in the previous round if based on the
+difference in the agent&#39;s and neighbor&#39;s expected mean payoff in the next
+round.</p></div></div><div class="code"><div class="wrapper"><span class="hljs-keyword">const</span> imitation = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">rule = Rule.sigmoid(</span>)) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">graph, ss, ps, rng</span>) </span>{
+        checkArgs(graph, ss, ps);
+
+        <span class="hljs-keyword">if</span> (rng === <span class="hljs-literal">undefined</span>) {
+            rng = random;
+        }
+
+        <span class="hljs-keyword">const</span> payoffs = ps.slice();
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>, len = ps.length; i &lt; len; ++i) {
+            <span class="hljs-keyword">const</span> degree = <span class="hljs-number">2</span> * graph.degree(i);
+            payoffs[i] = ps[i].reduce((acc, p) =&gt; acc + (p / degree));
+        }
+
+        <span class="hljs-keyword">const</span> dst = ss.slice();
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>, len = ss.length; i &lt; len; ++i) {
+            <span class="hljs-keyword">const</span> neighbors = graph.neighbors(i);
+            <span class="hljs-keyword">const</span> j = neighbors[rng.int(<span class="hljs-number">0</span>, neighbors.length - <span class="hljs-number">1</span>)];
+            <span class="hljs-keyword">if</span> (rng.float() &lt;= rule(payoffs[j] - payoffs[i])) {
+                dst[i] = ss[j];
+            } <span class="hljs-keyword">else</span> {
+                dst[i] = ss[i];
+            }
+        }
+        <span class="hljs-keyword">return</span> dst;
+    };
+};
+
+<span class="hljs-built_in">module</span>.exports = { cf, imitation };</div></div></div></div></body></html>

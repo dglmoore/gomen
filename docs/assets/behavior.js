@@ -405,6 +405,73 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
       },
       "depth": 1,
       "outline": []
+    }, {
+      "type": "file",
+      "data": {
+        "language": {
+          "nameMatchers": [".js"],
+          "pygmentsLexer": "javascript",
+          "multiLineComment": ["/*", "*", "*/"],
+          "singleLineComment": ["//"],
+          "ignorePrefix": "}",
+          "foldPrefix": "^",
+          "name": "JavaScript"
+        },
+        "sourcePath": "/home/ec2-user/gomen/src/scheme.js",
+        "projectPath": "src/scheme.js",
+        "targetPath": "scheme",
+        "pageTitle": "scheme",
+        "firstHeader": {
+          "type": "heading",
+          "data": {
+            "level": 1,
+            "title": "Schemes",
+            "slug": "schemes",
+            "isFileHeader": true
+          },
+          "depth": 1,
+          "children": [
+            {
+              "type": "heading",
+              "data": {
+                "level": 2,
+                "title": "Counterfactual Scheme",
+                "slug": "counterfactual-scheme"
+              },
+              "depth": 2
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 2,
+                "title": "Imitation Scheme",
+                "slug": "imitation-scheme"
+              },
+              "depth": 2
+            }
+          ]
+        },
+        "title": "Schemes"
+      },
+      "depth": 1,
+      "outline": [
+        {
+          "type": "heading",
+          "data": {
+            "level": 2,
+            "title": "Counterfactual Scheme",
+            "slug": "counterfactual-scheme"
+          },
+          "depth": 2
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 2,
+            "title": "Imitation Scheme",
+            "slug": "imitation-scheme"
+          },
+          "depth": 2
+        }
+      ]
     }
   ];
 
