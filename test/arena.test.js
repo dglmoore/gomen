@@ -1,5 +1,6 @@
-const { TwoPlayerGame, Arena, Scheme } = require('../main.js');
-const { cycleGraph, completeGraph, emptyGraph } = require('jsnetworkx');
+const { TwoPlayerGame, Arena, Scheme, jsnx: {
+    cycleGraph, completeGraph, emptyGraph
+}} = require('../main.js');
 const random = require('random');
 const seedrandom = require('seedrandom');
 

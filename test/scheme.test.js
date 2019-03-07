@@ -1,5 +1,4 @@
-const { Scheme } = require('../main.js');
-const { completeGraph } = require('jsnetworkx');
+const { Scheme, jsnx: { completeGraph } } = require('../main.js');
 
 test('cf scheme - strategies not array', function() {
     const scheme = Scheme.cf();

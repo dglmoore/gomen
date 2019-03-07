@@ -5,9 +5,11 @@
 // * [Arenas](arena.html)
 // * [Rule](rule.html)
 // * [Scheme](scheme.html)
+// * [jsnx](graph.html)
 module.exports = {
     TwoPlayerGame: require('./src/game.js'),
     Arena: require('./src/arena.js'),
     Rule: require('./src/rule.js'),
-    Scheme: require('./src/scheme.js')
+    Scheme: require('./src/scheme.js'),
+    jsnx: require('./src/graph.js')
 };
