@@ -1,0 +1,79 @@
+<!DOCTYPE html><html lang="en"><head><title>util</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="util"><meta name="groc-project-path" content="src/util.js"><meta name="groc-github-url" content="https://github.com/dglmoore/gomen"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/dglmoore/gomen/blob/master/src/util.js">src/util.js</a></div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="utility-functions">Utility Functions</h1>
+<p>There are a number of functions that turn out to be pretty useful to have,
+but aren&#39;t offered by the Javascript standard library. We implement a few of
+them here for internal use.</p></div></div><div class="code"><div class="wrapper"><span class="hljs-keyword">const</span> random = <span class="hljs-built_in">require</span>(<span class="hljs-string">'random'</span>);
+<span class="hljs-keyword">const</span> ow = <span class="hljs-built_in">require</span>(<span class="hljs-string">'ow'</span>);</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Construct an array of a give size <code>n</code> filled with sequential values starting
+from <code>start = 0</code>.  The starting value need not be an integer, any number will
+suffice, but each value in sequence will differ by <code>1</code>.</p>
+<h2 id="examples">Examples</h2>
+<pre><code>&gt; iota(3)
+[ 0, 1, 2 ]
+&gt; iota(3, 5)
+[ 5, 6, 7 ]
+&gt; iota(5, -2.1)
+[ -2.1, -1.1, -0.10000000000000009, 0.8999999999999999, 1.9 ]</code></pre></div></div><div class="code"><div class="wrapper"><span class="hljs-keyword">const</span> iota = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">n, start=0</span>) </span>{
+    ow(n, ow.number.integer.not.negative);
+    ow(start, ow.number);
+    <span class="hljs-keyword">const</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(n);
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i) {
+        arr[i] = start + i;
+    }
+    <span class="hljs-keyword">return</span> arr;
+};</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Zip two arrays (<code>a</code> and <code>b</code>) together, creating an &quot;array of arrays&quot;, the
+<code>i</code>th element of which corresponds to an array of the <code>i</code>th element of each
+of the arguments in the order they were provided. The length of the array
+will be <code>zip(a,b).length === Math.min(a.length, b.length)</code>.</p>
+<h2 id="examples">Examples</h2>
+<pre><code>&gt; zip([], [])
+[]
+&gt; zip([], [1])
+[]
+&gt; zip([1,2], [3])
+[ [ 1, 3 ] ]
+&gt; zip([1], [2,3])
+[ [ 1, 2 ] ]
+&gt; zip([1,2,3], [4,5,6])
+[ [ 1, 4 ], [ 2, 5 ], [ 3, 6 ] ]</code></pre></div></div><div class="code"><div class="wrapper"><span class="hljs-keyword">const</span> zip = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">a, b</span>) </span>{
+    ow(a, ow.array);
+    ow(b, ow.array);
+    <span class="hljs-keyword">if</span> (b.length &lt; a.length) {
+        <span class="hljs-keyword">return</span> b.map((e, i) =&gt; [a[i], e]);
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">return</span> a.map((e, i) =&gt; [e, b[i]]);
+    }
+};</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Select a random subset of a sequence <code>seq</code> of size <code>m</code> with each element of
+the subset unique. The user may optionally provide a random number generator
+<code>rng=random</code> which has an <code>int(a,b)</code> method.</p>
+<h2 id="examples">Examples</h2>
+<pre><code>&gt; const random = require(&#39;random&#39;);
+undefined
+&gt; const seedrandom = require(&#39;seedrandom&#39;);
+undefined
+&gt; const rng = random.clone(seedrandom(2018));
+undefined
+&gt; randomSubset([], 0)
+[]
+&gt; randomSubset([1,2,3,4], 2, rng)
+[ 2, 3 ]
+&gt; randomSubset([1,2,3,4], 2, rng)
+[ 1, 2 ]
+&gt; randomSubset([1,2,3,4], 2, rng)
+[ 2, 1 ]
+&gt; randomSubset([1,2,2,2], 3, rng)
+{ ArgumentError: Expected number to be in range [0..2], got 3
+    at randomSubset (.../src/util.js:45:5) name: &#39;ArgumentError&#39; }
+&gt; randomSubset([1,2,2,2], 2, rng)
+[ 2, 1 ]</code></pre></div></div><div class="code"><div class="wrapper"><span class="hljs-keyword">const</span> randomSubset = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">seq, m, rng=random</span>) </span>{
+    ow(seq, ow.array);
+    <span class="hljs-keyword">const</span> unique = [...new <span class="hljs-built_in">Set</span>(seq)];
+    ow(m, ow.number.integer.inRange(<span class="hljs-number">0</span>, unique.length));
+    ow(rng.int, ow.function);
+    <span class="hljs-keyword">let</span> targets = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>();
+    <span class="hljs-keyword">while</span> (targets.size &lt; m) {
+        <span class="hljs-keyword">const</span> x = unique[rng.int(<span class="hljs-number">0</span>, unique.length-<span class="hljs-number">1</span>)];
+        targets.add(x);
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Array</span>.from(targets);
+};
+
+<span class="hljs-built_in">module</span>.exports = { iota, zip, randomSubset };</div></div></div></div></body></html>
