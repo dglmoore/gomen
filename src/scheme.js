@@ -38,7 +38,7 @@ const checkArgs = function(graph, strategies, payoffs) {
         throw new TypeError(`payoffs must be a matrix, got ${JSON.stringify(payoffs)}`);
     // 4. `payoffs` must have as many rows as agents in the graphs, and as many
     //    columns as possible strategies.
-    } else if (payoffs.length !== graph.size() || payoffs.some(p => p.length != 2)) {
+    } else if (payoffs.length !== graph.order() || payoffs.some(p => p.length != 2)) {
         throw new RangeError('payoffs matrix has incorrect size');
     }
 };
