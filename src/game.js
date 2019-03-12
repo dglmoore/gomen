@@ -3,7 +3,7 @@
 // In order to play a game, we need to specify which game we're playing. To do
 // that, we create a simple factory function `TwoPlayerGame` which returns an
 // object to represent a 2-player game represented in normal form.
-const TwoPlayerGame = function(payoff) {
+const TwoPlayerGame = function(payoff, name) {
     // The factory function expects a 2x2 `payoff` matrix, returning a
     // `TypeError` if it is not a matrix and a `RangeError` if it is not 2x2.
     if (!Array.isArray(payoff) || payoff.some(row => !Array.isArray(row))) {
@@ -24,7 +24,7 @@ const TwoPlayerGame = function(payoff) {
         }
     }), {
         // The payoff matrix is an enumberable member of the returned object.
-        payoff
+        payoff, name
     });
 };
 // ----------------------------------------------------------------------------
@@ -58,7 +58,7 @@ const TwoPlayerGame = function(payoff) {
 // [prisoners-dilemma]: https://en.wikipedia.org/wiki/Prisoner%27s_dilemma "Prisoner's Dilemma"
 TwoPlayerGame.PrisonersDilemma = function(P, R) {
     if (0.0 < P && P < R && R < 1.0) {
-        return TwoPlayerGame([[R, 0.0], [1.0, P]]);
+        return TwoPlayerGame([[R, 0.0], [1.0, P]], 'Prisoner\'s Dilemma');
     } else {
         throw new RangeError(`Prisoner's dilemma requires 0 < P < R < 1, got ${{P, R}}`);
     }
@@ -82,7 +82,7 @@ TwoPlayerGame.PrisonersDilemma = function(P, R) {
 // [hawk-dove]: https://en.wikipedia.org/wiki/Chicken_(game) "Hawk-Dove"
 TwoPlayerGame.HawkDove = function(T, P) {
     if (0.0 < T && T < P && P < 1.0) {
-        return TwoPlayerGame([[0.0, 1.0], [T, P]]);
+        return TwoPlayerGame([[0.0, 1.0], [T, P]], 'Hawk-Dove');
     } else {
         throw new RangeError(`Hawk-Dove requires 0 < T < P < 1, got ${{T, P}}`);
     }
@@ -106,7 +106,7 @@ TwoPlayerGame.HawkDove = function(T, P) {
 // [stag-hunt]: https://en.wikipedia.org/wiki/Stag_hunt "Stag Hunt"
 TwoPlayerGame.StagHunt = function(P, T) {
     if (0.0 < P && P < T && T < 1.0) {
-        return TwoPlayerGame([[0.0, 1.0], [T, P]]);
+        return TwoPlayerGame([[0.0, 1.0], [T, P]], 'Stag Hunt');
     } else {
         throw new RangeError(`Stag Hunt requires 0 < P < T < 1, got ${{T, P}}`);
     }
@@ -130,7 +130,7 @@ TwoPlayerGame.StagHunt = function(P, T) {
 // [deadlock]: https://en.wikipedia.org/wiki/Deadlock_(game_theory) "Deadlock"
 TwoPlayerGame.Deadlock = function(R, P) {
     if (0.0 < R && R < P && P < 1.0) {
-        return TwoPlayerGame([[R, 0.0], [1.0, P]]);
+        return TwoPlayerGame([[R, 0.0], [1.0, P]], 'Deadlock');
     } else {
         throw new RangeError(`Deadlock requires 0 < R < P < 1, got ${{R, P}}`);
     }
@@ -153,7 +153,7 @@ TwoPlayerGame.Deadlock = function(R, P) {
 // ```
 TwoPlayerGame.Harmony = function(T, S) {
     if (0.0 < T && T < S && S < 1.0) {
-        return TwoPlayerGame([[1.0, S], [T, 0.0]]);
+        return TwoPlayerGame([[1.0, S], [T, 0.0]], 'Harmony');
     } else {
         throw new RangeError(`Harmony requires 0 < T < S < 1, got ${{T, S}}`);
     }
