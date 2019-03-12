@@ -44,4 +44,24 @@ jsnx.barabasiAlbertGraph = function(n, m, rng=random) {
     return g;
 };
 
+jsnx.wheelGraph = function(n) {
+    ow(n, ow.number.integer.greaterThan(1));
+
+    let g = jsnx.cycleGraph(n-1);
+    for (let i = 0; i < n-1; ++i) {
+        g.addEdge(i, n-1);
+    }
+    return g;
+};
+
+jsnx.starGraph = function(n) {
+    ow(n, ow.number.integer.greaterThan(1));
+
+    let g = jsnx.emptyGraph(n-1);
+    for (let i = 0; i < n-1; ++i) {
+        g.addEdge(i, n-1);
+    }
+    return g;
+};
+
 module.exports = jsnx;
