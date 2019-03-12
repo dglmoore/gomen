@@ -59,7 +59,7 @@ test.each`
     expect(Arena(game, graph).payoffs(ss)).toEqual(payoffs);
 });
 
-test('play cf', function() {
+test('play using cf scheme', function() {
     const rng = random.clone(seedrandom(1879));
     const a = Arena(TwoPlayerGame.StagHunt(1/3, 2/3), cycleGraph(5), Scheme.cf());
     expect(a.round([0,0,1,1,0], rng)).toEqual([1,0,0,1,0]);
@@ -67,7 +67,7 @@ test('play cf', function() {
     a.round([0,0,1,1,0]);
 });
 
-test('play imitation', function() {
+test('play using imitation scheme', function() {
     const rng = random.clone(seedrandom(1879));
     const a = Arena(TwoPlayerGame.StagHunt(1/3, 2/3), cycleGraph(5), Scheme.imitation());
     expect(a.round([0,0,1,1,0], rng)).toEqual([0,1,1,1,0]);

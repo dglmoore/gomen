@@ -1,5 +1,5 @@
 // # Utility Functions
-// 
+//
 // There are a number of functions that turn out to be pretty useful to have,
 // but aren't offered by the Javascript standard library. We implement a few of
 // them here for internal use.
@@ -96,4 +96,37 @@ const randomSubset = function(seq, m, rng=random) {
     return Array.from(targets);
 };
 
-module.exports = { iota, zip, randomSubset };
+const Space = function(n) {
+    const volume = 1 << n;
+    let stateNum = 0;
+    let state = new Array(n).fill(0);
+    return Object.create({
+        get volume() {
+            return volume;
+        },
+
+        [Symbol.iterator]() {
+            return Object.create({
+                next() {
+                    if (stateNum === volume) {
+                        return { done: true };
+                    } else if (stateNum !== 0) {
+                        for (let i = 0; i < n; ++i) {
+                            if (state[i] === 0) {
+                                state[i] = 1;
+                                for (let j = 0; j < i; ++j) {
+                                    state[j] = 0;
+                                }
+                                break;
+                            }
+                        }
+                    }
+                    ++stateNum;
+                    return { value: state.slice(), done: false };
+                }
+            });
+        }
+    });
+};
+
+module.exports = { iota, zip, randomSubset, Space };

@@ -1,4 +1,7 @@
 // # Arenas - Where Games are Played
+const ow = require('ow');
+const random = require('random');
+const { Space } = require('./util.js');
 
 // An `Arena` consists of a 2-player `game` played by all agents, an undirected
 // `graph` representing the neighborhoods of each agent, i.e. which pairs of
@@ -77,6 +80,45 @@ const Arena = function(game, graph, scheme) {
         // using the random number generator `rng`.
         round(ss, rng) {
             return this.scheme(this.graph, ss, this.payoffs(ss), rng);
+        },
+
+        // Play `rounds` of the game starting from a random initial set of
+        // strategies. Optionally, the user may specify that this process be
+        // repeated `replicates` number of times, and can provide a random
+        // number generator `rng`.
+        play({ rounds, exhaustive, replicates, rng }) {
+            ow(rounds, ow.number.integer.positive);
+            ow(replicates, ow.any(ow.undefined, ow.number.integer.positive));
+            if (rng === undefined) {
+                rng = random;
+            }
+            if (exhaustive) {
+                const space = Space(this.graph.order());
+                const series = new Array(space.volume);
+                let i = 0;
+                for (let init of space) {
+                    series[i] = new Array(rounds);
+                    series[i][0] = init;
+                    for (let r = 0; r < rounds; ++r) {
+                        series[i][r+1] = this.round(series[i][r], rng);
+                    }
+                    ++i;
+                }
+                return series;
+            } else if (replicates === undefined) {
+                const series = new Array(rounds);
+                series[0] = new Array(this.graph.order()).fill(0).map(() => rng.int(0,1));
+                for (let r = 0; r < rounds; ++r) {
+                    series[r+1] = this.round(series[r], rng);
+                }
+                return series;
+            } else {
+                const series = new Array(replicates);
+                for (let r = 0; r < replicates; ++r) {
+                    series[r] = this.play({ rounds, rng });
+                }
+                return series;
+            }
         }
     };
     // ************************************************************************
