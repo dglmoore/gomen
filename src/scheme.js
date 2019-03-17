@@ -58,7 +58,8 @@ const cf = function(rule = Rule.sigmoid()) {
 
         const dst = ss.slice();
         for (let i = 0, len = ss.length; i < len; ++i) {
-            dst[i] = (rng.float() <= rule(ps[i][1] - ps[i][0])) | 0;
+            const s = ss[i], sbar = s ^ 1;
+            dst[i] = (rng.float() <= rule(ps[i][sbar] - ps[i][s])) ? sbar : s;
         }
         return dst;
     };
