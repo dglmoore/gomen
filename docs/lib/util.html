@@ -41,8 +41,11 @@ will be <code>zip(a,b).length === Math.min(a.length, b.length)</code>.</p>
 [ [ 1, 2 ] ]
 &gt; zip([1,2,3], [4,5,6])
 [ [ 1, 4 ], [ 2, 5 ], [ 3, 6 ] ]</code></pre></div></div><div class="code"><div class="wrapper"><span class="hljs-keyword">const</span> zip = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">a, b</span>) </span>{
-    ow(a, ow.array);
-    ow(b, ow.array);
+    <span class="hljs-keyword">if</span> (!is.array(a)) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'first argument is not an array'</span>);
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!is.array(b)) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'second argument is not an array'</span>);
+    }
     <span class="hljs-keyword">if</span> (b.length &lt; a.length) {
         <span class="hljs-keyword">return</span> b.map((e, i) =&gt; [a[i], e]);
     } <span class="hljs-keyword">else</span> {
