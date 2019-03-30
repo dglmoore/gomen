@@ -2,7 +2,6 @@
 <p>There are a number of functions that turn out to be pretty useful to have,
 but aren&#39;t offered by the Javascript standard library. We implement a few of
 them here for internal use.</p></div></div><div class="code"><div class="wrapper"><span class="hljs-keyword">const</span> random = <span class="hljs-built_in">require</span>(<span class="hljs-string">'random'</span>);
-<span class="hljs-keyword">const</span> ow = <span class="hljs-built_in">require</span>(<span class="hljs-string">'ow'</span>);
 <span class="hljs-keyword">const</span> is = <span class="hljs-built_in">require</span>(<span class="hljs-string">'is'</span>);</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Construct an array of a give size <code>n</code> filled with sequential values starting
 from <code>start = 0</code>.  The starting value need not be an integer, any number will
 suffice, but each value in sequence will differ by <code>1</code>.</p>
@@ -74,10 +73,16 @@ undefined
     at randomSubset (.../src/util.js:45:5) name: &#39;ArgumentError&#39; }
 &gt; randomSubset([1,2,2,2], 2, rng)
 [ 2, 1 ]</code></pre></div></div><div class="code"><div class="wrapper"><span class="hljs-keyword">const</span> randomSubset = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">seq, m, rng=random</span>) </span>{
-    ow(seq, ow.array);
+    <span class="hljs-keyword">if</span> (!is.array(seq)) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'first argument is not an array'</span>);
+    }
     <span class="hljs-keyword">const</span> unique = [...new <span class="hljs-built_in">Set</span>(seq)];
-    ow(m, ow.number.integer.inRange(<span class="hljs-number">0</span>, unique.length));
-    ow(rng.int, ow.function);
+    <span class="hljs-keyword">if</span> (!is.within(m, <span class="hljs-number">0</span>, unique.length)) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'second argument is out of range'</span>);
+    }
+    <span class="hljs-keyword">if</span> (!is.fn(rng.int)) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'third argument does not have an `int` method'</span>);
+    }
     <span class="hljs-keyword">let</span> targets = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>();
     <span class="hljs-keyword">while</span> (targets.size &lt; m) {
         <span class="hljs-keyword">const</span> x = unique[rng.int(<span class="hljs-number">0</span>, unique.length-<span class="hljs-number">1</span>)];
