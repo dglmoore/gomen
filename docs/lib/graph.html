@@ -45,7 +45,11 @@ undefined
 };
 
 jsnx.wheelGraph = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">n</span>) </span>{
-    ow(n, ow.number.integer.greaterThan(<span class="hljs-number">1</span>));
+    <span class="hljs-keyword">if</span> (!is.integer(n)) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'number of nodes is not an integer'</span>);
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (is.lt(<span class="hljs-number">2</span>)) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'number of nodes is less than 2'</span>);
+    }
 
     <span class="hljs-keyword">let</span> g = jsnx.cycleGraph(n-<span class="hljs-number">1</span>);
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; n-<span class="hljs-number">1</span>; ++i) {
