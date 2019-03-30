@@ -1,4 +1,4 @@
-const { Rule } = require('../main.js');
+const { Rule } = require('../src');
 
 test('sigmoid throws on invalid beta', function() {
     expect(() => Rule.sigmoid('a')).toThrow(TypeError);

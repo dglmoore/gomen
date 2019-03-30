@@ -7,9 +7,9 @@
 // * [Scheme](scheme.html)
 // * [jsnx](graph.html)
 module.exports = {
-    TwoPlayerGame: require('./src/game.js'),
-    Arena: require('./src/arena.js'),
-    Rule: require('./src/rule.js'),
-    Scheme: require('./src/scheme.js'),
-    jsnx: require('./src/graph.js')
+    TwoPlayerGame: require('./game'),
+    Arena: require('./arena'),
+    Rule: require('./rule'),
+    Scheme: require('./scheme'),
+    jsnx: require('./graph')
 };

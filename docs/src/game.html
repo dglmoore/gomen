@@ -1,6 +1,6 @@
-<!DOCTYPE html><html lang="en"><head><title>game</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="game"><meta name="groc-project-path" content="src/game.js"><meta name="groc-github-url" content="https://github.com/dglmoore/gomen"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/dglmoore/gomen/blob/master/src/game.js">src/game.js</a></div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="two-player-games">Two Player Games</h1></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>In order to play a game, we need to specify which game we&#39;re playing. To do
+<!DOCTYPE html><html lang="en"><head><title>src/game</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../"><meta name="groc-document-path" content="src/game"><meta name="groc-project-path" content="src/game.js"><meta name="groc-github-url" content="https://github.com/dglmoore/gomen"><link rel="stylesheet" type="text/css" media="all" href="../assets/style.css"><script type="text/javascript" src="../assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/dglmoore/gomen/blob/master/src/game.js">src/game.js</a></div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="two-player-games">Two Player Games</h1></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>In order to play a game, we need to specify which game we&#39;re playing. To do
 that, we create a simple factory function <code>TwoPlayerGame</code> which returns an
-object to represent a 2-player game represented in normal form.</p></div></div><div class="code"><div class="wrapper"><span class="hljs-keyword">const</span> TwoPlayerGame = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">payoff</span>) </span>{</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>The factory function expects a 2x2 <code>payoff</code> matrix, returning a
+object to represent a 2-player game represented in normal form.</p></div></div><div class="code"><div class="wrapper"><span class="hljs-keyword">const</span> TwoPlayerGame = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">payoff, name</span>) </span>{</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>The factory function expects a 2x2 <code>payoff</code> matrix, returning a
 <code>TypeError</code> if it is not a matrix and a <code>RangeError</code> if it is not 2x2.</p></div></div><div class="code"><div class="wrapper">    <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">Array</span>.isArray(payoff) || payoff.some(row =&gt; !<span class="hljs-built_in">Array</span>.isArray(row))) {
         <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">`payoff must be a matrix <span class="hljs-subst">${payoff}</span>`</span>);
     } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (payoff.length != <span class="hljs-number">2</span> || payoff.some(row =&gt; row.length != <span class="hljs-number">2</span>)) {
@@ -15,7 +15,7 @@ the first and second players play strategies <code>i</code> and <code>j</code>, 
             }
             <span class="hljs-keyword">return</span> p;
         }
-    }), {</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>The payoff matrix is an enumberable member of the returned object.</p></div></div><div class="code"><div class="wrapper">        payoff
+    }), {</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>The payoff matrix is an enumberable member of the returned object.</p></div></div><div class="code"><div class="wrapper">        payoff, name
     });
 };</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="specific-games">Specific Games</h2>
 <p>There are a number of specific 2-player games for which we&#39;ve implemented convenience
@@ -37,7 +37,7 @@ matrix</p>
 <pre><code>&gt; TwoPlayerGame.PrisonersDilemma(0.5, 0.75)
 { payoff: [ [ 0.75, 0 ], [ 1, 0.5 ] ] }</code></pre></div></div><div class="code"><div class="wrapper">TwoPlayerGame.PrisonersDilemma = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">P, R</span>) </span>{
     <span class="hljs-keyword">if</span> (<span class="hljs-number">0.0</span> &lt; P &amp;&amp; P &lt; R &amp;&amp; R &lt; <span class="hljs-number">1.0</span>) {
-        <span class="hljs-keyword">return</span> TwoPlayerGame([[R, <span class="hljs-number">0.0</span>], [<span class="hljs-number">1.0</span>, P]]);
+        <span class="hljs-keyword">return</span> TwoPlayerGame([[R, <span class="hljs-number">0.0</span>], [<span class="hljs-number">1.0</span>, P]], <span class="hljs-string">'Prisoner\'s Dilemma'</span>);
     } <span class="hljs-keyword">else</span> {
         <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">RangeError</span>(<span class="hljs-string">`Prisoner's dilemma requires 0 &lt; P &lt; R &lt; 1, got <span class="hljs-subst">${{P, R}</span>}`</span>);
     }
@@ -50,7 +50,7 @@ T P</code></pre>
 <pre><code>&gt; TwoPlayerGame.HawkDove(0.5, 0.75)
 { payoff: [ [ 0, 1 ], [ 0.5, 0.75 ] ] }</code></pre></div></div><div class="code"><div class="wrapper">TwoPlayerGame.HawkDove = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T, P</span>) </span>{
     <span class="hljs-keyword">if</span> (<span class="hljs-number">0.0</span> &lt; T &amp;&amp; T &lt; P &amp;&amp; P &lt; <span class="hljs-number">1.0</span>) {
-        <span class="hljs-keyword">return</span> TwoPlayerGame([[<span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>], [T, P]]);
+        <span class="hljs-keyword">return</span> TwoPlayerGame([[<span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>], [T, P]], <span class="hljs-string">'Hawk-Dove'</span>);
     } <span class="hljs-keyword">else</span> {
         <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">RangeError</span>(<span class="hljs-string">`Hawk-Dove requires 0 &lt; T &lt; P &lt; 1, got <span class="hljs-subst">${{T, P}</span>}`</span>);
     }
@@ -63,7 +63,7 @@ T P</code></pre>
 <pre><code>&gt; TwoPlayerGame.StagHunt(0.5, 0.75)
 { payoff: [ [ 0, 1 ], [ 0.75, 0.5 ] ] }</code></pre></div></div><div class="code"><div class="wrapper">TwoPlayerGame.StagHunt = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">P, T</span>) </span>{
     <span class="hljs-keyword">if</span> (<span class="hljs-number">0.0</span> &lt; P &amp;&amp; P &lt; T &amp;&amp; T &lt; <span class="hljs-number">1.0</span>) {
-        <span class="hljs-keyword">return</span> TwoPlayerGame([[<span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>], [T, P]]);
+        <span class="hljs-keyword">return</span> TwoPlayerGame([[<span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>], [T, P]], <span class="hljs-string">'Stag Hunt'</span>);
     } <span class="hljs-keyword">else</span> {
         <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">RangeError</span>(<span class="hljs-string">`Stag Hunt requires 0 &lt; P &lt; T &lt; 1, got <span class="hljs-subst">${{T, P}</span>}`</span>);
     }
@@ -76,7 +76,7 @@ T P</code></pre>
 <pre><code>&gt; TwoPlayerGame.Deadlock(0.5, 0.75)
 { payoff: [ [ 0.5, 0 ], [ 1, 0.75 ] ] }</code></pre></div></div><div class="code"><div class="wrapper">TwoPlayerGame.Deadlock = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">R, P</span>) </span>{
     <span class="hljs-keyword">if</span> (<span class="hljs-number">0.0</span> &lt; R &amp;&amp; R &lt; P &amp;&amp; P &lt; <span class="hljs-number">1.0</span>) {
-        <span class="hljs-keyword">return</span> TwoPlayerGame([[R, <span class="hljs-number">0.0</span>], [<span class="hljs-number">1.0</span>, P]]);
+        <span class="hljs-keyword">return</span> TwoPlayerGame([[R, <span class="hljs-number">0.0</span>], [<span class="hljs-number">1.0</span>, P]], <span class="hljs-string">'Deadlock'</span>);
     } <span class="hljs-keyword">else</span> {
         <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">RangeError</span>(<span class="hljs-string">`Deadlock requires 0 &lt; R &lt; P &lt; 1, got <span class="hljs-subst">${{R, P}</span>}`</span>);
     }
@@ -89,7 +89,7 @@ T 0</code></pre>
 <pre><code>&gt; TwoPlayerGame.Harmony(0.5, 0.75)
 { payoff: [ [ 1, 0.75 ], [ 0.5, 0 ] ] }</code></pre></div></div><div class="code"><div class="wrapper">TwoPlayerGame.Harmony = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">T, S</span>) </span>{
     <span class="hljs-keyword">if</span> (<span class="hljs-number">0.0</span> &lt; T &amp;&amp; T &lt; S &amp;&amp; S &lt; <span class="hljs-number">1.0</span>) {
-        <span class="hljs-keyword">return</span> TwoPlayerGame([[<span class="hljs-number">1.0</span>, S], [T, <span class="hljs-number">0.0</span>]]);
+        <span class="hljs-keyword">return</span> TwoPlayerGame([[<span class="hljs-number">1.0</span>, S], [T, <span class="hljs-number">0.0</span>]], <span class="hljs-string">'Harmony'</span>);
     } <span class="hljs-keyword">else</span> {
         <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">RangeError</span>(<span class="hljs-string">`Harmony requires 0 &lt; T &lt; S &lt; 1, got <span class="hljs-subst">${{T, S}</span>}`</span>);
     }

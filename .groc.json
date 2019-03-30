@@ -1,6 +1,7 @@
 {
-  "glob": ["README.md", "main.js", "src/*.js"],
+  "glob": ["README.md", "src/*.js"],
   "out": "docs",
+  "strip": [],
   "github": false,
   "empty-lines": false,
   "index-page-title": "Gomen - Games on Graphs",

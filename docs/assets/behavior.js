@@ -13,7 +13,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "commentsOnly": true,
           "name": "Markdown"
         },
-        "sourcePath": "/home/ec2-user/gomen/README.md",
+        "sourcePath": "/home/dglmoore/gomen/README.md",
         "projectPath": "README.md",
         "targetPath": "index",
         "pageTitle": "Gomen - Games on Graphs",
@@ -32,31 +32,62 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
       "depth": 1,
       "outline": []
     }, {
-      "type": "file",
+      "type": "folder",
       "data": {
-        "language": {
-          "nameMatchers": [".js"],
-          "pygmentsLexer": "javascript",
-          "multiLineComment": ["/*", "*", "*/"],
-          "singleLineComment": ["//"],
-          "ignorePrefix": "}",
-          "foldPrefix": "^",
-          "name": "JavaScript"
-        },
-        "sourcePath": "/home/ec2-user/gomen/src/arena.js",
-        "projectPath": "src/arena.js",
-        "targetPath": "arena",
-        "pageTitle": "arena",
-        "firstHeader": {
-          "type": "heading",
+        "path": "src",
+        "title": "src"
+      },
+      "depth": 1,
+      "children": [
+        {
+          "type": "file",
           "data": {
-            "level": 1,
-            "title": "Arenas - Where Games are Played",
-            "slug": "arenas-where-games-are-played",
-            "isFileHeader": true
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/home/dglmoore/gomen/src/arena.js",
+            "projectPath": "src/arena.js",
+            "targetPath": "src/arena",
+            "pageTitle": "src/arena",
+            "firstHeader": {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "Arenas - Where Games are Played",
+                "slug": "arenas-where-games-are-played",
+                "isFileHeader": true
+              },
+              "depth": 1,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Prototype",
+                    "slug": "prototype"
+                  },
+                  "depth": 2
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Object Creation",
+                    "slug": "object-creation"
+                  },
+                  "depth": 2
+                }
+              ]
+            },
+            "title": "Arenas - Where Games are Played"
           },
-          "depth": 1,
-          "children": [
+          "depth": 2,
+          "outline": [
             {
               "type": "heading",
               "data": {
@@ -75,55 +106,145 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "depth": 2
             }
           ]
-        },
-        "title": "Arenas - Where Games are Played"
-      },
-      "depth": 1,
-      "outline": [
-        {
-          "type": "heading",
-          "data": {
-            "level": 2,
-            "title": "Prototype",
-            "slug": "prototype"
-          },
-          "depth": 2
         }, {
-          "type": "heading",
+          "type": "file",
           "data": {
-            "level": 2,
-            "title": "Object Creation",
-            "slug": "object-creation"
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/home/dglmoore/gomen/src/game.js",
+            "projectPath": "src/game.js",
+            "targetPath": "src/game",
+            "pageTitle": "src/game",
+            "firstHeader": {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "Two Player Games",
+                "slug": "two-player-games",
+                "isFileHeader": true
+              },
+              "depth": 1,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Specific Games",
+                    "slug": "specific-games"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "The Prisoner&#39;s Dilemma",
+                        "slug": "the-prisoner39s-dilemma"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "Examples",
+                            "slug": "examples"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Hawk-Dove",
+                        "slug": "hawk-dove"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "Examples",
+                            "slug": "examples"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Stag Hunt",
+                        "slug": "stag-hunt"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "Examples",
+                            "slug": "examples"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Deadlock",
+                        "slug": "deadlock"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "Examples",
+                            "slug": "examples"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Harmony",
+                        "slug": "harmony"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "Examples",
+                            "slug": "examples"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "title": "Two Player Games"
           },
-          "depth": 2
-        }
-      ]
-    }, {
-      "type": "file",
-      "data": {
-        "language": {
-          "nameMatchers": [".js"],
-          "pygmentsLexer": "javascript",
-          "multiLineComment": ["/*", "*", "*/"],
-          "singleLineComment": ["//"],
-          "ignorePrefix": "}",
-          "foldPrefix": "^",
-          "name": "JavaScript"
-        },
-        "sourcePath": "/home/ec2-user/gomen/src/game.js",
-        "projectPath": "src/game.js",
-        "targetPath": "game",
-        "pageTitle": "game",
-        "firstHeader": {
-          "type": "heading",
-          "data": {
-            "level": 1,
-            "title": "Two Player Games",
-            "slug": "two-player-games",
-            "isFileHeader": true
-          },
-          "depth": 1,
-          "children": [
+          "depth": 2,
+          "outline": [
             {
               "type": "heading",
               "data": {
@@ -232,145 +353,47 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               ]
             }
           ]
-        },
-        "title": "Two Player Games"
-      },
-      "depth": 1,
-      "outline": [
-        {
-          "type": "heading",
+        }, {
+          "type": "file",
           "data": {
-            "level": 2,
-            "title": "Specific Games",
-            "slug": "specific-games"
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/home/dglmoore/gomen/src/graph.js",
+            "projectPath": "src/graph.js",
+            "targetPath": "src/graph",
+            "pageTitle": "src/graph",
+            "firstHeader": {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "Graphs",
+                "slug": "graphs",
+                "isFileHeader": true
+              },
+              "depth": 1,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Examples",
+                    "slug": "examples"
+                  },
+                  "depth": 2
+                }
+              ]
+            },
+            "title": "Graphs"
           },
           "depth": 2,
-          "children": [
-            {
-              "type": "heading",
-              "data": {
-                "level": 3,
-                "title": "The Prisoner&#39;s Dilemma",
-                "slug": "the-prisoner39s-dilemma"
-              },
-              "depth": 3,
-              "children": [
-                {
-                  "type": "heading",
-                  "data": {
-                    "level": 4,
-                    "title": "Examples",
-                    "slug": "examples"
-                  },
-                  "depth": 4
-                }
-              ]
-            }, {
-              "type": "heading",
-              "data": {
-                "level": 3,
-                "title": "Hawk-Dove",
-                "slug": "hawk-dove"
-              },
-              "depth": 3,
-              "children": [
-                {
-                  "type": "heading",
-                  "data": {
-                    "level": 4,
-                    "title": "Examples",
-                    "slug": "examples"
-                  },
-                  "depth": 4
-                }
-              ]
-            }, {
-              "type": "heading",
-              "data": {
-                "level": 3,
-                "title": "Stag Hunt",
-                "slug": "stag-hunt"
-              },
-              "depth": 3,
-              "children": [
-                {
-                  "type": "heading",
-                  "data": {
-                    "level": 4,
-                    "title": "Examples",
-                    "slug": "examples"
-                  },
-                  "depth": 4
-                }
-              ]
-            }, {
-              "type": "heading",
-              "data": {
-                "level": 3,
-                "title": "Deadlock",
-                "slug": "deadlock"
-              },
-              "depth": 3,
-              "children": [
-                {
-                  "type": "heading",
-                  "data": {
-                    "level": 4,
-                    "title": "Examples",
-                    "slug": "examples"
-                  },
-                  "depth": 4
-                }
-              ]
-            }, {
-              "type": "heading",
-              "data": {
-                "level": 3,
-                "title": "Harmony",
-                "slug": "harmony"
-              },
-              "depth": 3,
-              "children": [
-                {
-                  "type": "heading",
-                  "data": {
-                    "level": 4,
-                    "title": "Examples",
-                    "slug": "examples"
-                  },
-                  "depth": 4
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    }, {
-      "type": "file",
-      "data": {
-        "language": {
-          "nameMatchers": [".js"],
-          "pygmentsLexer": "javascript",
-          "multiLineComment": ["/*", "*", "*/"],
-          "singleLineComment": ["//"],
-          "ignorePrefix": "}",
-          "foldPrefix": "^",
-          "name": "JavaScript"
-        },
-        "sourcePath": "/home/ec2-user/gomen/src/graph.js",
-        "projectPath": "src/graph.js",
-        "targetPath": "graph",
-        "pageTitle": "graph",
-        "firstHeader": {
-          "type": "heading",
-          "data": {
-            "level": 1,
-            "title": "Graphs",
-            "slug": "graphs",
-            "isFileHeader": true
-          },
-          "depth": 1,
-          "children": [
+          "outline": [
             {
               "type": "heading",
               "data": {
@@ -381,107 +404,115 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "depth": 2
             }
           ]
-        },
-        "title": "Graphs"
-      },
-      "depth": 1,
-      "outline": [
-        {
-          "type": "heading",
+        }, {
+          "type": "file",
           "data": {
-            "level": 2,
-            "title": "Examples",
-            "slug": "examples"
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/home/dglmoore/gomen/src/index.js",
+            "projectPath": "src/index.js",
+            "targetPath": "src/index",
+            "pageTitle": "src/index",
+            "firstHeader": {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "Gomen Module",
+                "slug": "gomen-module",
+                "isFileHeader": true
+              },
+              "depth": 1
+            },
+            "title": "Gomen Module"
           },
-          "depth": 2
-        }
-      ]
-    }, {
-      "type": "file",
-      "data": {
-        "language": {
-          "nameMatchers": [".js"],
-          "pygmentsLexer": "javascript",
-          "multiLineComment": ["/*", "*", "*/"],
-          "singleLineComment": ["//"],
-          "ignorePrefix": "}",
-          "foldPrefix": "^",
-          "name": "JavaScript"
-        },
-        "sourcePath": "/home/ec2-user/gomen/main.js",
-        "projectPath": "main.js",
-        "targetPath": "main",
-        "pageTitle": "main",
-        "firstHeader": {
-          "type": "heading",
+          "depth": 2,
+          "outline": []
+        }, {
+          "type": "file",
           "data": {
-            "level": 1,
-            "title": "Gomen Module",
-            "slug": "gomen-module",
-            "isFileHeader": true
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/home/dglmoore/gomen/src/rule.js",
+            "projectPath": "src/rule.js",
+            "targetPath": "src/rule",
+            "pageTitle": "src/rule",
+            "firstHeader": {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "Rules",
+                "slug": "rules",
+                "isFileHeader": true
+              },
+              "depth": 1
+            },
+            "title": "Rules"
           },
-          "depth": 1
-        },
-        "title": "Gomen Module"
-      },
-      "depth": 1,
-      "outline": []
-    }, {
-      "type": "file",
-      "data": {
-        "language": {
-          "nameMatchers": [".js"],
-          "pygmentsLexer": "javascript",
-          "multiLineComment": ["/*", "*", "*/"],
-          "singleLineComment": ["//"],
-          "ignorePrefix": "}",
-          "foldPrefix": "^",
-          "name": "JavaScript"
-        },
-        "sourcePath": "/home/ec2-user/gomen/src/rule.js",
-        "projectPath": "src/rule.js",
-        "targetPath": "rule",
-        "pageTitle": "rule",
-        "firstHeader": {
-          "type": "heading",
+          "depth": 2,
+          "outline": []
+        }, {
+          "type": "file",
           "data": {
-            "level": 1,
-            "title": "Rules",
-            "slug": "rules",
-            "isFileHeader": true
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/home/dglmoore/gomen/src/scheme.js",
+            "projectPath": "src/scheme.js",
+            "targetPath": "src/scheme",
+            "pageTitle": "src/scheme",
+            "firstHeader": {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "Schemes",
+                "slug": "schemes",
+                "isFileHeader": true
+              },
+              "depth": 1,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Counterfactual Scheme",
+                    "slug": "counterfactual-scheme"
+                  },
+                  "depth": 2
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Imitation Scheme",
+                    "slug": "imitation-scheme"
+                  },
+                  "depth": 2
+                }
+              ]
+            },
+            "title": "Schemes"
           },
-          "depth": 1
-        },
-        "title": "Rules"
-      },
-      "depth": 1,
-      "outline": []
-    }, {
-      "type": "file",
-      "data": {
-        "language": {
-          "nameMatchers": [".js"],
-          "pygmentsLexer": "javascript",
-          "multiLineComment": ["/*", "*", "*/"],
-          "singleLineComment": ["//"],
-          "ignorePrefix": "}",
-          "foldPrefix": "^",
-          "name": "JavaScript"
-        },
-        "sourcePath": "/home/ec2-user/gomen/src/scheme.js",
-        "projectPath": "src/scheme.js",
-        "targetPath": "scheme",
-        "pageTitle": "scheme",
-        "firstHeader": {
-          "type": "heading",
-          "data": {
-            "level": 1,
-            "title": "Schemes",
-            "slug": "schemes",
-            "isFileHeader": true
-          },
-          "depth": 1,
-          "children": [
+          "depth": 2,
+          "outline": [
             {
               "type": "heading",
               "data": {
@@ -500,55 +531,63 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "depth": 2
             }
           ]
-        },
-        "title": "Schemes"
-      },
-      "depth": 1,
-      "outline": [
-        {
-          "type": "heading",
-          "data": {
-            "level": 2,
-            "title": "Counterfactual Scheme",
-            "slug": "counterfactual-scheme"
-          },
-          "depth": 2
         }, {
-          "type": "heading",
+          "type": "file",
           "data": {
-            "level": 2,
-            "title": "Imitation Scheme",
-            "slug": "imitation-scheme"
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/home/dglmoore/gomen/src/util.js",
+            "projectPath": "src/util.js",
+            "targetPath": "src/util",
+            "pageTitle": "src/util",
+            "firstHeader": {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "Utility Functions",
+                "slug": "utility-functions",
+                "isFileHeader": true
+              },
+              "depth": 1,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Examples",
+                    "slug": "examples"
+                  },
+                  "depth": 2
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Examples",
+                    "slug": "examples"
+                  },
+                  "depth": 2
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Examples",
+                    "slug": "examples"
+                  },
+                  "depth": 2
+                }
+              ]
+            },
+            "title": "Utility Functions"
           },
-          "depth": 2
-        }
-      ]
-    }, {
-      "type": "file",
-      "data": {
-        "language": {
-          "nameMatchers": [".js"],
-          "pygmentsLexer": "javascript",
-          "multiLineComment": ["/*", "*", "*/"],
-          "singleLineComment": ["//"],
-          "ignorePrefix": "}",
-          "foldPrefix": "^",
-          "name": "JavaScript"
-        },
-        "sourcePath": "/home/ec2-user/gomen/src/util.js",
-        "projectPath": "src/util.js",
-        "targetPath": "util",
-        "pageTitle": "util",
-        "firstHeader": {
-          "type": "heading",
-          "data": {
-            "level": 1,
-            "title": "Utility Functions",
-            "slug": "utility-functions",
-            "isFileHeader": true
-          },
-          "depth": 1,
-          "children": [
+          "depth": 2,
+          "outline": [
             {
               "type": "heading",
               "data": {
@@ -575,35 +614,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "depth": 2
             }
           ]
-        },
-        "title": "Utility Functions"
-      },
-      "depth": 1,
-      "outline": [
-        {
-          "type": "heading",
-          "data": {
-            "level": 2,
-            "title": "Examples",
-            "slug": "examples"
-          },
-          "depth": 2
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 2,
-            "title": "Examples",
-            "slug": "examples"
-          },
-          "depth": 2
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 2,
-            "title": "Examples",
-            "slug": "examples"
-          },
-          "depth": 2
         }
       ]
     }

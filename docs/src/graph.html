@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><title>graph</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="graph"><meta name="groc-project-path" content="src/graph.js"><meta name="groc-github-url" content="https://github.com/dglmoore/gomen"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/dglmoore/gomen/blob/master/src/graph.js">src/graph.js</a></div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="graphs">Graphs</h1>
+<!DOCTYPE html><html lang="en"><head><title>src/graph</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../"><meta name="groc-document-path" content="src/graph"><meta name="groc-project-path" content="src/graph.js"><meta name="groc-github-url" content="https://github.com/dglmoore/gomen"><link rel="stylesheet" type="text/css" media="all" href="../assets/style.css"><script type="text/javascript" src="../assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/dglmoore/gomen/blob/master/src/graph.js">src/graph.js</a></div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="graphs">Graphs</h1>
 <p>We need to extend <code>JSNetworkX</code> with a few algorithms that it doesn&#39;t
 provide. This is where we do it. The <code>jsnx</code> module is modified directly and
 is exported.</p></div></div><div class="code"><div class="wrapper"><span class="hljs-keyword">const</span> jsnx = <span class="hljs-built_in">require</span>(<span class="hljs-string">'jsnetworkx'</span>);
@@ -32,6 +32,26 @@ undefined
         source += <span class="hljs-number">1</span>;
     }
 
+    <span class="hljs-keyword">return</span> g;
+};
+
+jsnx.wheelGraph = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">n</span>) </span>{
+    ow(n, ow.number.integer.greaterThan(<span class="hljs-number">1</span>));
+
+    <span class="hljs-keyword">let</span> g = jsnx.cycleGraph(n-<span class="hljs-number">1</span>);
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; n-<span class="hljs-number">1</span>; ++i) {
+        g.addEdge(i, n-<span class="hljs-number">1</span>);
+    }
+    <span class="hljs-keyword">return</span> g;
+};
+
+jsnx.starGraph = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">n</span>) </span>{
+    ow(n, ow.number.integer.greaterThan(<span class="hljs-number">1</span>));
+
+    <span class="hljs-keyword">let</span> g = jsnx.emptyGraph(n-<span class="hljs-number">1</span>);
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; n-<span class="hljs-number">1</span>; ++i) {
+        g.addEdge(i, n-<span class="hljs-number">1</span>);
+    }
     <span class="hljs-keyword">return</span> g;
 };
 

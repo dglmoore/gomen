@@ -1,4 +1,4 @@
-const { TwoPlayerGame } = require('../main.js');
+const { TwoPlayerGame } = require('../src');
 
 test('Raise TypeError if payoff is not a matrix', function() {
     expect(() => TwoPlayerGame()).toThrow(TypeError);
