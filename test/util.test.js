@@ -1,4 +1,4 @@
-const util = require('../src/util.js');
+const util = require('../lib/util.js');
 const { ArgumentError } = require('ow');
 
 test('iota throws for invalid length', function() {

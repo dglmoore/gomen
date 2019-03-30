@@ -34,8 +34,8 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
     }, {
       "type": "folder",
       "data": {
-        "path": "src",
-        "title": "src"
+        "path": "lib",
+        "title": "lib"
       },
       "depth": 1,
       "children": [
@@ -51,10 +51,10 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "foldPrefix": "^",
               "name": "JavaScript"
             },
-            "sourcePath": "/home/dglmoore/gomen/src/arena.js",
-            "projectPath": "src/arena.js",
-            "targetPath": "src/arena",
-            "pageTitle": "src/arena",
+            "sourcePath": "/home/dglmoore/gomen/lib/arena.js",
+            "projectPath": "lib/arena.js",
+            "targetPath": "lib/arena",
+            "pageTitle": "lib/arena",
             "firstHeader": {
               "type": "heading",
               "data": {
@@ -118,10 +118,10 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "foldPrefix": "^",
               "name": "JavaScript"
             },
-            "sourcePath": "/home/dglmoore/gomen/src/game.js",
-            "projectPath": "src/game.js",
-            "targetPath": "src/game",
-            "pageTitle": "src/game",
+            "sourcePath": "/home/dglmoore/gomen/lib/game.js",
+            "projectPath": "lib/game.js",
+            "targetPath": "lib/game",
+            "pageTitle": "lib/game",
             "firstHeader": {
               "type": "heading",
               "data": {
@@ -365,10 +365,10 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "foldPrefix": "^",
               "name": "JavaScript"
             },
-            "sourcePath": "/home/dglmoore/gomen/src/graph.js",
-            "projectPath": "src/graph.js",
-            "targetPath": "src/graph",
-            "pageTitle": "src/graph",
+            "sourcePath": "/home/dglmoore/gomen/lib/graph.js",
+            "projectPath": "lib/graph.js",
+            "targetPath": "lib/graph",
+            "pageTitle": "lib/graph",
             "firstHeader": {
               "type": "heading",
               "data": {
@@ -416,10 +416,10 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "foldPrefix": "^",
               "name": "JavaScript"
             },
-            "sourcePath": "/home/dglmoore/gomen/src/index.js",
-            "projectPath": "src/index.js",
-            "targetPath": "src/index",
-            "pageTitle": "src/index",
+            "sourcePath": "/home/dglmoore/gomen/lib/index.js",
+            "projectPath": "lib/index.js",
+            "targetPath": "lib/index",
+            "pageTitle": "lib/index",
             "firstHeader": {
               "type": "heading",
               "data": {
@@ -446,10 +446,10 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "foldPrefix": "^",
               "name": "JavaScript"
             },
-            "sourcePath": "/home/dglmoore/gomen/src/rule.js",
-            "projectPath": "src/rule.js",
-            "targetPath": "src/rule",
-            "pageTitle": "src/rule",
+            "sourcePath": "/home/dglmoore/gomen/lib/rule.js",
+            "projectPath": "lib/rule.js",
+            "targetPath": "lib/rule",
+            "pageTitle": "lib/rule",
             "firstHeader": {
               "type": "heading",
               "data": {
@@ -476,10 +476,10 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "foldPrefix": "^",
               "name": "JavaScript"
             },
-            "sourcePath": "/home/dglmoore/gomen/src/scheme.js",
-            "projectPath": "src/scheme.js",
-            "targetPath": "src/scheme",
-            "pageTitle": "src/scheme",
+            "sourcePath": "/home/dglmoore/gomen/lib/scheme.js",
+            "projectPath": "lib/scheme.js",
+            "targetPath": "lib/scheme",
+            "pageTitle": "lib/scheme",
             "firstHeader": {
               "type": "heading",
               "data": {
@@ -543,10 +543,10 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "foldPrefix": "^",
               "name": "JavaScript"
             },
-            "sourcePath": "/home/dglmoore/gomen/src/util.js",
-            "projectPath": "src/util.js",
-            "targetPath": "src/util",
-            "pageTitle": "src/util",
+            "sourcePath": "/home/dglmoore/gomen/lib/util.js",
+            "projectPath": "lib/util.js",
+            "targetPath": "lib/util",
+            "pageTitle": "lib/util",
             "firstHeader": {
               "type": "heading",
               "data": {

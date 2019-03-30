@@ -1,4 +1,4 @@
-const { Scheme, jsnx: { completeGraph } } = require('../src');
+const { Scheme, jsnx: { completeGraph } } = require('../lib');
 
 test('cf scheme - strategies not array', function() {
     const scheme = Scheme.cf();

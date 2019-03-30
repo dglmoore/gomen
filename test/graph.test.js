@@ -1,4 +1,4 @@
-const { barabasiAlbertGraph } = require('../src/graph.js');
+const { barabasiAlbertGraph } = require('../lib/graph.js');
 const { ArgumentError } = require('ow');
 
 test('barabasiAlbertGraph throws for invalid size', function() {

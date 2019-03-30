@@ -2,10 +2,10 @@
   "name": "gomen",
   "version": "1.0.0",
   "description": "Brilliant games on graphs with some informational flair",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "jest",
-    "lint": "eslint src test",
+    "lint": "eslint lib test",
     "repl": "node"
   },
   "repository": {

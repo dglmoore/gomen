@@ -1,4 +1,4 @@
-const gomen = require('../src');
+const gomen = require('../lib');
 
 test('Exposes TwoPlayerGame', function() {
     expect(gomen.TwoPlayerGame).toBeDefined();

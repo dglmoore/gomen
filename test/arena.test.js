@@ -1,6 +1,6 @@
 const { TwoPlayerGame, Arena, Scheme, jsnx: {
     cycleGraph, completeGraph, emptyGraph
-}} = require('../src');
+}} = require('../lib');
 const random = require('random');
 const seedrandom = require('seedrandom');
 
