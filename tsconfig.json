@@ -3,6 +3,7 @@
     "target": "ES2019",
     "module": "commonjs",
     "outDir": "./lib",
+    "declaration": true,
 
     "strict": true,
     "noImplicitAny": true,
@@ -17,7 +18,6 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "allowJs": true,
   },
   "include": ["src"],
   "exclude": ["node_modules", "test"],

@@ -5,7 +5,7 @@ export function sigmoid(beta: number = 1.0): Rule {
         throw new RangeError(`sigmoid expects beta > 0, got ${beta}`);
     }
 
-    return (dp: number): number => 1.0 / (1.0 + Math.exp(-beta*dp));
+    return (dp: number): number => 1.0 / (1.0 + Math.exp(-beta * dp));
 }
 
 export const fermi = sigmoid;
