@@ -4,8 +4,12 @@
   "description": "Brilliant games on graphs with some informational flair",
   "main": "lib/index.js",
   "scripts": {
-    "test": "jest",
-    "lint": "eslint lib test",
+    "build": "tsc",
+    "fmt": "prettier --write \"src/**/*.ts\" \"src/**/*.js\" \"test/**/*.ts\" \"test/**/*.js\"",
+    "lint": "tslint -p tsconfig.json",
+    "test": "jest --detectOpenHandles --config jestconfig.json",
+    "docs": "typedoc src",
+    "prepare": "npm run build",
     "repl": "node"
   },
   "repository": {
@@ -29,9 +33,16 @@
     "collectCoverage": true
   },
   "devDependencies": {
-    "eslint": "^5.15.3",
-    "eslint-plugin-jest": "^22.4.1",
-    "jest": "^24.5.0"
+    "@types/jest": "^24.0.15",
+    "@types/node": "^12.6.8",
+    "@types/random": "^2.1.0",
+    "jest": "^24.5.0",
+    "prettier": "^1.18.2",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.18.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typedoc": "^0.15.0",
+    "typescript": "^3.5.3"
   },
   "dependencies": {
     "is": "^3.3.0",

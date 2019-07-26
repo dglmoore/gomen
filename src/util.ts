@@ -3,8 +3,15 @@
 // There are a number of functions that turn out to be pretty useful to have,
 // but aren't offered by the Javascript standard library. We implement a few of
 // them here for internal use.
-const random = require('random');
 const is = require('is');
+
+import * as random from 'random';
+
+export { random };
+
+export interface RNG {
+    int(a: number, b: number): number;
+}
 
 // Construct an array of a give size `n` filled with sequential values starting
 // from `start = 0`.  The starting value need not be an integer, any number will
@@ -19,21 +26,16 @@ const is = require('is');
 // > iota(5, -2.1)
 // [ -2.1, -1.1, -0.10000000000000009, 0.8999999999999999, 1.9 ]
 // ```
-const iota = function(n, start=0) {
-    if (!is.integer(n)) {
-        throw new Error('length is non-integral');
-    } else if (n < 0) {
+export function iota(n: number, start: number = 0): number[] {
+    if (n < 0) {
         throw new Error('length is negative');
-    }
-    if (!is.number(start)) {
-        throw new Error('starting value is not a number');
     }
     const arr = new Array(n);
     for (let i = 0; i < n; ++i) {
         arr[i] = start + i;
     }
     return arr;
-};
+}
 
 // Zip two arrays (`a` and `b`) together, creating an "array of arrays", the
 // `i`th element of which corresponds to an array of the `i`th element of each
@@ -53,18 +55,13 @@ const iota = function(n, start=0) {
 // > zip([1,2,3], [4,5,6])
 // [ [ 1, 4 ], [ 2, 5 ], [ 3, 6 ] ]
 // ```
-const zip = function(a, b) {
-    if (!is.array(a)) {
-        throw new Error('first argument is not an array');
-    } else if (!is.array(b)) {
-        throw new Error('second argument is not an array');
-    }
+export function zip<T, U>(a: T[], b: U[]): Array<[T, U]> {
     if (b.length < a.length) {
         return b.map((e, i) => [a[i], e]);
     } else {
         return a.map((e, i) => [e, b[i]]);
     }
-};
+}
 
 // Select a random subset of a sequence `seq` of size `m` with each element of
 // the subset unique. The user may optionally provide a random number generator
@@ -92,56 +89,54 @@ const zip = function(a, b) {
 // > randomSubset([1,2,2,2], 2, rng)
 // [ 2, 1 ]
 // ```
-const randomSubset = function(seq, m, rng=random) {
-    if (!is.array(seq)) {
-        throw new Error('first argument is not an array');
-    }
+export function randomSubset<T>(seq: T[], m: number, rng: RNG = random): T[] {
     const unique = [...new Set(seq)];
     if (!is.within(m, 0, unique.length)) {
         throw new Error('second argument is out of range');
     }
-    if (!is.fn(rng.int)) {
-        throw new Error('third argument does not have an `int` method');
-    }
-    let targets = new Set();
+    const targets: Set<T> = new Set();
     while (targets.size < m) {
-        const x = unique[rng.int(0, unique.length-1)];
+        const x = unique[rng.int(0, unique.length - 1)];
         targets.add(x);
     }
     return Array.from(targets);
-};
+}
 
-const Space = function(n) {
-    const volume = 1 << n;
-    let stateNum = 0;
-    let state = new Array(n).fill(0);
-    return Object.create({
-        get volume() {
-            return volume;
-        },
+export class Space {
+    public readonly volume: number;
+    private stateNum: number = 0;
+    private state: number[];
 
-        [Symbol.iterator]() {
-            return Object.create({
-                next() {
-                    if (stateNum === volume) {
-                        return { done: true };
-                    } else if (stateNum !== 0) {
-                        for (let i = 0; i < n; ++i) {
-                            if (state[i] === 0) {
-                                state[i] = 1;
-                                for (let j = 0; j < i; ++j) {
-                                    state[j] = 0;
-                                }
-                                break;
+    constructor(n: number) {
+        if (n < 1) {
+            throw new Error('number of dimensions of the space is less than 1');
+        }
+        this.volume = 2 ** n;
+        this.state = new Array(n).fill(0);
+    }
+
+    public [Symbol.iterator]() {
+        const volume = this.volume;
+        const state = this.state.slice();
+        let stateNum = this.stateNum;
+        return Object.create({
+            next() {
+                if (stateNum === volume) {
+                    return { done: true };
+                } else if (stateNum !== 0) {
+                    for (let i = 0, len = state.length; i < len; ++i) {
+                        if (state[i] === 0) {
+                            state[i] = 1;
+                            for (let j = 0; j < i; ++j) {
+                                state[j] = 0;
                             }
+                            break;
                         }
                     }
-                    ++stateNum;
-                    return { value: state.slice(), done: false };
                 }
-            });
-        }
-    });
-};
-
-module.exports = { iota, zip, randomSubset, Space };
+                ++stateNum;
+                return { value: state.slice(), done: false };
+            },
+        });
+    }
+}
