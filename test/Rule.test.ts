@@ -1,9 +1,7 @@
-const { Rule } = require('../lib');
+import * as Rule from '../src/Rule';
 
 test('sigmoid throws on invalid beta', function() {
-    expect(() => Rule.sigmoid('a')).toThrow(TypeError);
-    expect(() => Rule.sigmoid([1, 2, 3])).toThrow(TypeError);
-    expect(() => Rule.sigmoid(-1)).toThrow(RangeError);
+    expect(() => Rule.sigmoid(-1)).toThrow(Error);
 });
 
 test('sigmoid with default argument', function() {
@@ -23,9 +21,7 @@ test.each`
 });
 
 test('fermi throws on invalid beta', function() {
-    expect(() => Rule.fermi('a')).toThrow(TypeError);
-    expect(() => Rule.fermi([1, 2, 3])).toThrow(TypeError);
-    expect(() => Rule.fermi(-1)).toThrow(RangeError);
+    expect(() => Rule.fermi(-1)).toThrow(Error);
 });
 
 test('fermi with default argument', function() {
@@ -45,9 +41,7 @@ test.each`
 });
 
 test('heaviside throws on invalid heaviside', function() {
-    expect(() => Rule.heaviside('a')).toThrow(TypeError);
-    expect(() => Rule.heaviside([1, 2, 3])).toThrow(TypeError);
-    expect(() => Rule.heaviside(-1)).toThrow(RangeError);
+    expect(() => Rule.heaviside(-1)).toThrow(Error);
 });
 
 test('heaviside with default argument', function() {
