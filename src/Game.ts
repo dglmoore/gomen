@@ -20,7 +20,7 @@ export class TwoPlayerGame {
     // { payoff: [ [ 0.75, 0 ], [ 1, 0.5 ] ] }
     // ```
     // [prisoners-dilemma]: https://en.wikipedia.org/wiki/Prisoner%27s_dilemma "Prisoner's Dilemma"
-    static PrisonersDilemma(P: number, R: number): TwoPlayerGame {
+    public static PrisonersDilemma(P: number, R: number): TwoPlayerGame {
         if (0.0 < P && P < R && R < 1.0) {
             return new TwoPlayerGame([[R, 0.0], [1.0, P]], "Prisoner's Dilemma");
         } else {
@@ -44,7 +44,7 @@ export class TwoPlayerGame {
     // { payoff: [ [ 0, 1 ], [ 0.5, 0.75 ] ] }
     // ```
     // [hawk-dove]: https://en.wikipedia.org/wiki/Chicken_(game) "Hawk-Dove"
-    static HawkDove(T: number, P: number): TwoPlayerGame {
+    public static HawkDove(T: number, P: number): TwoPlayerGame {
         if (0.0 < T && T < P && P < 1.0) {
             return new TwoPlayerGame([[0.0, 1.0], [T, P]], 'Hawk-Dove');
         } else {
@@ -68,7 +68,7 @@ export class TwoPlayerGame {
     // { payoff: [ [ 0, 1 ], [ 0.75, 0.5 ] ] }
     // ```
     // [stag-hunt]: https://en.wikipedia.org/wiki/Stag_hunt "Stag Hunt"
-    static StagHunt(P: number, T: number): TwoPlayerGame {
+    public static StagHunt(P: number, T: number): TwoPlayerGame {
         if (0.0 < P && P < T && T < 1.0) {
             return new TwoPlayerGame([[0.0, 1.0], [T, P]], 'Stag Hunt');
         } else {
@@ -92,7 +92,7 @@ export class TwoPlayerGame {
     // { payoff: [ [ 0.5, 0 ], [ 1, 0.75 ] ] }
     // ```
     // [deadlock]: https://en.wikipedia.org/wiki/Deadlock_(game_theory) "Deadlock"
-    static Deadlock(R: number, P: number): TwoPlayerGame {
+    public static Deadlock(R: number, P: number): TwoPlayerGame {
         if (0.0 < R && R < P && P < 1.0) {
             return new TwoPlayerGame([[R, 0.0], [1.0, P]], 'Deadlock');
         } else {
@@ -115,7 +115,7 @@ export class TwoPlayerGame {
     // > TwoPlayerGame.Harmony(0.5, 0.75)
     // { payoff: [ [ 1, 0.75 ], [ 0.5, 0 ] ] }
     // ```
-    static Harmony(T: number, S: number): TwoPlayerGame {
+    public static Harmony(T: number, S: number): TwoPlayerGame {
         if (0.0 < T && T < S && S < 1.0) {
             return new TwoPlayerGame([[1.0, S], [T, 0.0]], 'Harmony');
         } else {
@@ -127,7 +127,7 @@ export class TwoPlayerGame {
     private ps: number[][];
 
     constructor(payoff: number[][], name?: string) {
-        if (payoff.length != 2 || payoff.some(row => row.length != 2)) {
+        if (payoff.length !== 2 || payoff.some(row => row.length !== 2)) {
             throw new Error(`payoff matrix must be 2x2, got ${payoff}`);
         }
 
@@ -135,20 +135,18 @@ export class TwoPlayerGame {
         this.ps = payoff;
     }
 
-    get payoff(): number[][] {
+    public get payoff(): number[][] {
         return this.ps;
     }
 
-    set payoff(payoff: number[][]) {
-        if (payoff.length != 2 || payoff.some(row => row.length != 2)) {
+    public set payoff(payoff: number[][]) {
+        if (payoff.length !== 2 || payoff.some(row => row.length !== 2)) {
             throw new Error(`payoff matrix must be 2x2, got ${payoff}`);
         }
         this.ps = payoff;
     }
 
-    // The only method provided is `getPayoff(i,j)` which returns the payoff if
-    // the first and second players play strategies `i` and `j`, respectively.
-    getPayoff(i: number, j: number): number {
+    public getPayoff(i: number, j: number): number {
         const p = this.ps[i][j];
         if (p === undefined) {
             throw new Error(`payoff is undefined for strategies ${{ i, j }}`);
