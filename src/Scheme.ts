@@ -17,7 +17,7 @@
 // [random](https://www.npmjs.com/package/random) package provides a default
 // value.
 import * as Rule from './Rule';
-import { random, RNG } from './util';
+import { random, RNG } from './Util';
 
 // Of course there are requirements on the `graph`, `strategies` and `payoffs`.
 // In particular:

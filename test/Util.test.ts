@@ -1,4 +1,4 @@
-import { iota, randomSubset, Space, zip } from '../src/util';
+import { iota, randomSubset, Space, zip } from '../src/Util';
 
 test('iota throws for invalid length', function() {
     expect(() => iota(-1)).toThrow(Error);

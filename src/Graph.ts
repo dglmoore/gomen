@@ -6,7 +6,7 @@
 const is = require('is');
 const jsnx = require('jsnetworkx');
 
-import { iota, random, randomSubset, RNG, zip } from './util';
+import { iota, random, randomSubset, RNG, zip } from './Util';
 
 jsnx.barabasiAlbertGraph = (n: number, m: number, rng: RNG = random): any => {
     if (!is.integer(n)) {

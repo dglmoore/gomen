@@ -1,5 +1,5 @@
 import { Arena, jsnx, Scheme, TwoPlayerGame } from '../src';
-import { random } from '../src/util';
+import { random } from '../src/Util';
 
 const seedrandom = require('seedrandom');
 
