@@ -1,4 +1,4 @@
-import { Arena } from './Arena';
+import Arena from './Arena';
 import { TwoPlayerGame } from './Game';
 import Graph from './Graph';
 import * as Rule from './Rule';

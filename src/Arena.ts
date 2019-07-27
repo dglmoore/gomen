@@ -4,14 +4,14 @@ import { random, RNG, Space } from './Util';
 
 const is = require('is');
 
-interface PlaySpec {
+export interface PlaySpec {
     rounds: number;
     exhaustive?: boolean;
     replicates?: number;
     rng?: RNG;
 }
 
-export class Arena {
+export default class Arena {
     public game: TwoPlayerGame;
     public graph: any;
     public scheme: Scheme;
