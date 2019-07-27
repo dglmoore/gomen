@@ -1,11 +1,15 @@
 environment:
-  nodejs_version: "10.15.1"
+  nodejs_version: "12.4.0"
 
 install:
   - ps: Install-Product node $env:nodejs_version
-  - npm install
+  - npm install --no-optional
+  - npm install -g codecov
 
 test_script:
   - npm test
+
+after_test:
+  - codecov
 
 build: off

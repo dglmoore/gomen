@@ -6,7 +6,7 @@ matrix:
 
 language: node_js
 node_js:
-  - "10.15.1"
+  - "12.4.0"
 sudo: required
 
 cache:
@@ -18,8 +18,8 @@ install:
   - npm install -g codecov
 
 script:
-  - npm test
   - npm run lint
+  - npm test
 
 after_success:
   - codecov
