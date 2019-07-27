@@ -1,4 +1,4 @@
-import * as Rule from '../src/Rule';
+import { Rule } from '../src';
 
 test('sigmoid throws on invalid beta', function() {
     expect(() => Rule.sigmoid(-1)).toThrow(Error);

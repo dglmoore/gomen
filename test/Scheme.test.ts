@@ -1,5 +1,4 @@
-import { jsnx } from '../src/Graph';
-import * as Scheme from '../src/Scheme';
+import { jsnx, Scheme } from '../src';
 
 describe('counterfactual scheme', () => {
     test.each([0, 4, 6])('.strategies invalid length', (n: number) => {

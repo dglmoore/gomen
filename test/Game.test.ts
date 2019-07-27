@@ -1,4 +1,4 @@
-import { TwoPlayerGame } from '../src/Game';
+import { TwoPlayerGame } from '../src';
 
 test('Raise Error if payoff is not 2x2', function() {
     expect(() => new TwoPlayerGame([[], []])).toThrow(Error);

@@ -1,4 +1,4 @@
-import { jsnx } from '../src/Graph';
+import { jsnx } from '../src';
 
 describe('barabasiAlbertGraph', () => {
     const { barabasiAlbertGraph } = jsnx;
