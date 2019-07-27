@@ -1,5 +1,5 @@
-import { TwoPlayerGame } from './Game';
 import { Scheme } from './Scheme';
+import TwoPlayerGame from './TwoPlayerGame';
 import { random, RNG, Space } from './Util';
 
 const is = require('is');

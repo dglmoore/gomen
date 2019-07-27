@@ -3,7 +3,7 @@
 // In order to play a game, we need to specify which game we're playing. To do
 // that, we create a simple factory function `TwoPlayerGame` which returns an
 // object to represent a 2-player game represented in normal form.
-export class TwoPlayerGame {
+export default class TwoPlayerGame {
     // ### The Prisoner's Dilemma
     //
     // Create the [Prisoner's Dilemma][prisoners-dilemma] characterized by a payoff
