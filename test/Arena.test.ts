@@ -1,9 +1,9 @@
-import { Arena, jsnx, Scheme, TwoPlayerGame } from '../src';
+import { Arena, Graph, Scheme, TwoPlayerGame } from '../src';
 import { random } from '../src/Util';
 
 const seedrandom = require('seedrandom');
 
-const { completeGraph, cycleGraph, emptyGraph } = jsnx;
+const { completeGraph, cycleGraph, emptyGraph } = Graph;
 
 test('Throws on empty graph', () => {
     const game = TwoPlayerGame.PrisonersDilemma(0.5, 0.75);

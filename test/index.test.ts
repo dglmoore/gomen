@@ -4,8 +4,8 @@ test('Exposes Arena', function() {
     expect(Gomen.Arena).toBeDefined();
 });
 
-test('Exposes jsnx', function() {
-    expect(Gomen.jsnx).toBeDefined();
+test('Exposes Graph', function() {
+    expect(Gomen.Graph).toBeDefined();
 });
 
 test('Exposes Rule', function() {

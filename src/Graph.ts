@@ -1,14 +1,14 @@
 // # Graphs
 //
 // We need to extend `JSNetworkX` with a few algorithms that it doesn't
-// provide. This is where we do it. The `jsnx` module is modified directly and
+// provide. This is where we do it. The `Graph` module is modified directly and
 // is exported.
 const is = require('is');
-const jsnx = require('jsnetworkx');
+const Graph = require('jsnetworkx');
 
 import { iota, random, randomSubset, RNG, zip } from './Util';
 
-jsnx.barabasiAlbertGraph = (n: number, m: number, rng: RNG = random): any => {
+Graph.barabasiAlbertGraph = (n: number, m: number, rng: RNG = random): any => {
     if (!is.integer(n)) {
         throw new Error('number of nodes is not an integer');
     } else if (is.lt(n, 2)) {
@@ -20,7 +20,7 @@ jsnx.barabasiAlbertGraph = (n: number, m: number, rng: RNG = random): any => {
         throw new Error('number of connections is not in [1, n) with n the number of nodes');
     }
 
-    const g = jsnx.emptyGraph(m);
+    const g = Graph.emptyGraph(m);
     let targets = iota(m);
     const repeatedNodes = new Array();
     let source = m;
@@ -36,28 +36,28 @@ jsnx.barabasiAlbertGraph = (n: number, m: number, rng: RNG = random): any => {
     return g;
 };
 
-jsnx.wheelGraph = (n: number): any => {
+Graph.wheelGraph = (n: number): any => {
     if (!is.integer(n)) {
         throw new Error('number of nodes is not an integer');
     } else if (is.lt(n, 4)) {
         throw new Error('number of nodes is less than 2');
     }
 
-    const g = jsnx.cycleGraph(n - 1);
+    const g = Graph.cycleGraph(n - 1);
     for (let i = 0; i < n - 1; ++i) {
         g.addEdge(i, n - 1);
     }
     return g;
 };
 
-jsnx.starGraph = (n: number): any => {
+Graph.starGraph = (n: number): any => {
     if (!is.integer(n)) {
         throw new Error('number of nodes is not an integer');
     } else if (is.lt(n, 3)) {
         throw new Error('number of nodes is less than 2');
     }
 
-    const g = jsnx.emptyGraph(n - 1);
+    const g = Graph.emptyGraph(n - 1);
     for (let i = 0; i < n - 1; ++i) {
         g.addEdge(i, n - 1);
     }
@@ -68,7 +68,7 @@ function gridIndex(m: number): (i: number, j: number) => number {
     return (i: number, j: number): number => j + i * m;
 }
 
-jsnx.latticeGraph = (n: number, m: number): any => {
+Graph.latticeGraph = (n: number, m: number): any => {
     if (!is.integer(n) || !is.integer(m)) {
         throw new Error('dimensions are not integers');
     } else if (is.lt(n, 2) || is.lt(m, 2)) {
@@ -77,7 +77,7 @@ jsnx.latticeGraph = (n: number, m: number): any => {
 
     const index = gridIndex(m);
 
-    const g = jsnx.emptyGraph(n * m);
+    const g = Graph.emptyGraph(n * m);
     for (let i = 0; i < n - 1; ++i) {
         g.addEdge(index(i, 0), index(i + 1, 0));
     }
@@ -93,4 +93,4 @@ jsnx.latticeGraph = (n: number, m: number): any => {
     return g;
 };
 
-export { jsnx };
+export default Graph;

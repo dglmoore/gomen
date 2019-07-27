@@ -1,7 +1,7 @@
-import { jsnx } from '../src';
+import { Graph } from '../src';
 
 describe('barabasiAlbertGraph', () => {
-    const { barabasiAlbertGraph } = jsnx;
+    const { barabasiAlbertGraph } = Graph;
 
     test('.throws for invalid size', () => {
         expect(() => barabasiAlbertGraph()).toThrow(Error);
@@ -30,7 +30,7 @@ describe('barabasiAlbertGraph', () => {
 });
 
 describe('starGraph', () => {
-    const { starGraph } = jsnx;
+    const { starGraph } = Graph;
     test('.throws for invalid size', () => {
         expect(() => starGraph()).toThrow(Error);
         expect(() => starGraph('a')).toThrow(Error);
@@ -59,7 +59,7 @@ describe('starGraph', () => {
 });
 
 describe('wheelGraph', () => {
-    const { wheelGraph } = jsnx;
+    const { wheelGraph } = Graph;
     test('.throws for invalid size', () => {
         expect(() => wheelGraph()).toThrow(Error);
         expect(() => wheelGraph('a')).toThrow(Error);
@@ -87,7 +87,7 @@ describe('wheelGraph', () => {
 });
 
 describe('latticeGraph', () => {
-    const { latticeGraph } = jsnx;
+    const { latticeGraph } = Graph;
     test('.throws for invalid height', () => {
         expect(() => latticeGraph()).toThrow(Error);
         expect(() => latticeGraph('a', 2)).toThrow(Error);
