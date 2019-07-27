@@ -1,7 +1,7 @@
 {
   "name": "gomen",
-  "version": "1.0.0",
-  "description": "Brilliant games on graphs with some informational flair",
+  "version": "2.0.0",
+  "description": "Agents playing games on graphs",
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc",
