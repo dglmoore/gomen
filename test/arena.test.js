@@ -69,11 +69,3 @@ test('play using cf scheme', function() {
 
     a.round([0, 0, 1, 1, 0]);
 });
-
-test('play using imitation scheme', function() {
-    const rng = random.clone(seedrandom(1879));
-    const a = Arena(TwoPlayerGame.StagHunt(1 / 3, 2 / 3), cycleGraph(5), Scheme.imitation());
-    expect(a.round([0, 0, 1, 1, 0], rng)).toEqual([0, 1, 1, 1, 0]);
-
-    a.round([0, 0, 1, 1, 0]);
-});

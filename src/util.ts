@@ -10,7 +10,8 @@ import * as random from 'random';
 export { random };
 
 export interface RNG {
-    int(a: number, b: number): number;
+    float(min?: number, max?: number): number;
+    int(min?: number, max?: number): number;
 }
 
 // Construct an array of a give size `n` filled with sequential values starting

@@ -62,6 +62,16 @@ test('randomSubset accepts RNG', function() {
                     throw new Error('exceed the limit of the RNG');
                 }
             },
+            float(a: number, b: number): number {
+                if (this.state === undefined) {
+                    this.state = a;
+                    return this.state;
+                } else if (this.state < b) {
+                    return ++this.state;
+                } else {
+                    throw new Error('exceed the limit of the RNG');
+                }
+            },
         }),
         { state: undefined },
     );

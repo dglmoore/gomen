@@ -1,4 +1,4 @@
-type Rule = (dp: number) => number;
+export type Rule = (dp: number) => number;
 
 export function sigmoid(beta: number = 1.0): Rule {
     if (beta < 0.0) {
